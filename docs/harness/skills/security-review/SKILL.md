@@ -1,6 +1,15 @@
+---
+name: security-review
+description: >-
+  Reviews access control, owner-only data isolation, ACL behavior, roles, and
+  cross-user leakage risks for the Personal Todo app.
+---
+
 # Security Review Skill
 
-Use this skill to review access control and data isolation for the Personal Todo app.
+## When To Use
+
+Use this skill for metadata, server, Fluent, API, data access, or UI work that could affect authorization or user data isolation.
 
 ## Review Areas
 

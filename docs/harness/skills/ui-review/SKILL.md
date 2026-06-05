@@ -1,6 +1,15 @@
+---
+name: ui-review
+description: >-
+  Reviews React UI and UX behavior for the Personal Todo app, including
+  TodoMVC-like interactions, ServiceNow UI Page constraints, and UI states.
+---
+
 # UI Review Skill
 
-Use this skill to review React UI and user experience concerns for the Personal Todo app.
+## When To Use
+
+Use this skill for React client, routing, data fetching, UI Page, interaction, visual state, or UX changes.
 
 ## Review Areas
 

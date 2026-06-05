@@ -6,7 +6,7 @@ US005 - Filters and Search
 
 ## Current Phase
 
-US005 locally implemented after platform-sme, security-sme, ui-sme, test-sme, and docs-sme review.
+US005 locally implemented after platform-review, security-review, ui-review, test-review, and docs-review skill evaluation.
 
 ## ServiceNow Agile
 
@@ -25,7 +25,7 @@ US005 locally implemented after platform-sme, security-sme, ui-sme, test-sme, an
 - Created ten Personal Todo Agile stories from `docs/stories/*.md`.
 - Generated `backlog.json` from ServiceNow Agile query results.
 - Reimplemented the US001-US004 baseline with Now SDK metadata preserved.
-- Ran the US005 SME subagent workflow before editing.
+- Ran the US005 skill review workflow before editing.
 - Added client-side US005 filters/search over ACL-visible task data.
 
 ## Active Risks

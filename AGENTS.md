@@ -19,10 +19,10 @@ This repository is for a ServiceNow Now SDK / Fluent application. Current planni
 
 ## Documentation and Review Skills
 
-Refer to the following specialized documentation and review skill guides for workflows:
+Refer to the following specialized documentation and review skill packages for workflows:
 
-- **Context7 Documentation**: [context7.md](file:///D:/coding/sn/demo/docs/harness/skills/context7.md) (Use when resolving external library queries)
-- **ServiceNow/SDK Documentation**: [sn-docs.md](file:///D:/coding/sn/demo/docs/harness/skills/sn-docs.md) (Use when checking ServiceNow API or platform behavior)
+- **Context7 Documentation**: [context7/SKILL.md](file:///D:/coding/sn/demo/docs/harness/skills/context7/SKILL.md) (Use when resolving external library queries)
+- **ServiceNow/SDK Documentation**: [sn-docs/SKILL.md](file:///D:/coding/sn/demo/docs/harness/skills/sn-docs/SKILL.md) (Use when checking ServiceNow API or platform behavior)
 - **Story Implementation Protocol**: [story-workflow.md](file:///D:/coding/sn/demo/docs/harness/story-workflow.md) (Follow this workflow when executing any task or story)
 
 ## Hard Rules

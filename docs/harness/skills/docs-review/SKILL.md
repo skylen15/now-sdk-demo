@@ -1,6 +1,15 @@
+---
+name: docs-review
+description: >-
+  Reviews planning, story, harness state, decision log, backlog mirror, and
+  implementation documentation updates for the Personal Todo app.
+---
+
 # Docs Review Skill
 
-Use this skill to maintain planning and implementation documentation for the Personal Todo app.
+## When To Use
+
+Use this skill when story files, harness state, decisions, acceptance criteria alignment, backlog mirrors, or implementation notes may need updates.
 
 ## Review Areas
 

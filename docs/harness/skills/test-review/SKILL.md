@@ -1,6 +1,15 @@
+---
+name: test-review
+description: >-
+  Maps Personal Todo stories and changes to validation coverage, including
+  Now SDK builds, ATF, REST/Table API checks, and React UI smoke tests.
+---
+
 # Test Review Skill
 
-Use this skill to map stories to validation coverage for the Personal Todo app.
+## When To Use
+
+Use this skill for every story or code change before declaring work complete.
 
 ## Review Areas
 

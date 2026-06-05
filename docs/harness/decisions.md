@@ -64,3 +64,16 @@ This keeps search/filter behavior reload-free, avoids encoded-query injection ri
 
 Consequences:
 Client filtering is not a security boundary. Owner isolation remains enforced by ACLs, and US008 can persist the same state shape in `x_2063979_todo_saved_filter.filter_state`.
+
+## DEC-006: Skills Carry Review Expertise
+
+Status: Accepted
+
+Decision:
+Harness review guidance is stored as portable base-spec skill packages under `docs/harness/skills/<skill-name>/SKILL.md`. Story work should load and apply the relevant skills inline. Subagents remain optional isolated workers for parallel execution, tool scoping, or verbose long-running validation, and should use the same skills rather than duplicate review instructions.
+
+Reason:
+Project review knowledge should be reusable across implementation, review, and validation passes without requiring orchestration-specific prompts. A `SKILL.md` package keeps each area of expertise discoverable and portable while preserving the existing harness workflow.
+
+Consequences:
+Future platform, security, UI, test, and documentation guidance should be added to the relevant skill package first. Add subagent definitions only when isolation or parallel execution is required.

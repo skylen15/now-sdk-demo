@@ -1,4 +1,13 @@
+---
+name: context7
+description: >-
+  Uses the ctx7 CLI to fetch current documentation for external libraries,
+  frameworks, SDKs, APIs, CLI tools, and cloud services.
+---
+
 # Context7 Documentation Skill
+
+## When To Use
 
 Use the `ctx7` CLI to fetch current documentation whenever the user asks about a library, framework, SDK, API, CLI tool, or cloud service. This includes API syntax, configuration, version migration, library-specific debugging, setup instructions, and CLI tool usage.
 

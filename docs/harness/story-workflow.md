@@ -7,14 +7,15 @@
 
 ## 2. Skill-Based Review
 
-- Review the active story requirements against relevant skill check-lists under `docs/harness/skills/`:
-  - `platform-review.md` (Required for metadata or server/Fluent changes)
-  - `security-review.md` (Required for metadata or server/Fluent changes)
-  - `ui-review.md` (Required for React/client changes)
-  - `test-review.md` (Required for every story)
-  - `docs-review.md` (Required when story files, harness state, decisions, or acceptance criteria alignment are involved)
+- Review the active story requirements against relevant skill packages under `docs/harness/skills/<skill-name>/SKILL.md`:
+  - `platform-review/SKILL.md` (Required for metadata or server/Fluent changes)
+  - `security-review/SKILL.md` (Required for metadata or server/Fluent changes)
+  - `ui-review/SKILL.md` (Required for React/client changes)
+  - `test-review/SKILL.md` (Required for every story)
+  - `docs-review/SKILL.md` (Required when story files, harness state, decisions, or acceptance criteria alignment are involved)
 - For each relevant skill, the agent must check whether the ServiceNow platform, Now SDK, or approved project dependency already provides the needed feature or implementation pattern before proposing custom code or new metadata.
 - Compile findings into a consolidated checklist before implementing.
+- Use subagents only when isolated context, parallel execution, tool scoping, or noisy long-running output is needed. Subagents should preload or follow the same relevant skill packages instead of carrying duplicated review instructions.
 
 ## 3. Consolidation
 
@@ -32,7 +33,7 @@
 
 - Run `npm run build` when feasible.
 - Run or document ATF, REST, server, or UI smoke coverage required by the story.
-- Re-evaluate relevant skill checklists against the changed files/diff before declaring the story complete.
+- Re-evaluate relevant skill packages against the changed files/diff before declaring the story complete.
 
 ## 6. Documentation and Sync
 

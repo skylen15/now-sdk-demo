@@ -1,6 +1,16 @@
+---
+name: platform-review
+description: >-
+  Reviews ServiceNow platform and Now SDK implementation concerns for the
+  Personal Todo app, including Fluent metadata, server behavior, and build
+  feasibility.
+---
+
 # Platform Review Skill
 
-Use this skill to review ServiceNow platform and Now SDK implementation concerns for the Personal Todo app.
+## When To Use
+
+Use this skill for metadata, server, Fluent, ServiceNow platform, Now SDK, or build-impacting changes.
 
 ## Review Areas
 
