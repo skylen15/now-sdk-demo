@@ -1,0 +1,126 @@
+{
+  "source": {
+    "system": "servicenow",
+    "instance": "pdi-qkb-o2",
+    "storyTable": "rm_story",
+    "epicTable": "rm_epic",
+    "lastSync": "2026-06-05"
+  },
+  "epic": {
+    "sys_id": "1941c35dc3510790d65e5b2ed4013186",
+    "number": "EPIC0010001",
+    "title": "Personal Todo App"
+  },
+  "stories": [
+    {
+      "id": "US001",
+      "sys_id": "a941c35dc3510790d65e5b2ed40131b3",
+      "number": "STRY0010001",
+      "title": "Project Foundation",
+      "state": "-6",
+      "sourcePath": "docs/stories/US001-project-foundation.md",
+      "epic": "1941c35dc3510790d65e5b2ed4013186",
+      "storyPoints": null,
+      "blocked": false
+    },
+    {
+      "id": "US002",
+      "sys_id": "c641075dc3510790d65e5b2ed4013108",
+      "number": "STRY0010002",
+      "title": "Task Data Model and Security",
+      "state": "-6",
+      "sourcePath": "docs/stories/US002-task-data-model-and-security.md",
+      "epic": "1941c35dc3510790d65e5b2ed4013186",
+      "storyPoints": null,
+      "blocked": false
+    },
+    {
+      "id": "US003",
+      "sys_id": "1e41075dc3510790d65e5b2ed401315e",
+      "number": "STRY0010003",
+      "title": "Basic Task CRUD",
+      "state": "-6",
+      "sourcePath": "docs/stories/US003-basic-task-crud.md",
+      "epic": "1941c35dc3510790d65e5b2ed4013186",
+      "storyPoints": null,
+      "blocked": false
+    },
+    {
+      "id": "US004",
+      "sys_id": "3241075dc3510790d65e5b2ed4013177",
+      "number": "STRY0010004",
+      "title": "TodoMVC List UI",
+      "state": "-6",
+      "sourcePath": "docs/stories/US004-todomvc-list-ui.md",
+      "epic": "1941c35dc3510790d65e5b2ed4013186",
+      "storyPoints": null,
+      "blocked": false
+    },
+    {
+      "id": "US005",
+      "sys_id": "4b41075dc3510790d65e5b2ed401319b",
+      "number": "STRY0010005",
+      "title": "Filters and Search",
+      "state": "-6",
+      "sourcePath": "docs/stories/US005-filters-and-search.md",
+      "epic": "1941c35dc3510790d65e5b2ed4013186",
+      "storyPoints": null,
+      "blocked": false
+    },
+    {
+      "id": "US006",
+      "sys_id": "db41075dc3510790d65e5b2ed40131b3",
+      "number": "STRY0010006",
+      "title": "Due Date and Priority",
+      "state": "-6",
+      "sourcePath": "docs/stories/US006-due-date-and-priority.md",
+      "epic": "1941c35dc3510790d65e5b2ed4013186",
+      "storyPoints": null,
+      "blocked": false
+    },
+    {
+      "id": "US007",
+      "sys_id": "7b41075dc3510790d65e5b2ed40131fd",
+      "number": "STRY0010007",
+      "title": "Tags and Notes",
+      "state": "-6",
+      "sourcePath": "docs/stories/US007-tags-and-notes.md",
+      "epic": "1941c35dc3510790d65e5b2ed4013186",
+      "storyPoints": null,
+      "blocked": false
+    },
+    {
+      "id": "US008",
+      "sys_id": "0451475dc3510790d65e5b2ed4013122",
+      "number": "STRY0010008",
+      "title": "Saved Filters",
+      "state": "-6",
+      "sourcePath": "docs/stories/US008-saved-filters.md",
+      "epic": "1941c35dc3510790d65e5b2ed4013186",
+      "storyPoints": null,
+      "blocked": false
+    },
+    {
+      "id": "US009",
+      "sys_id": "5851475dc3510790d65e5b2ed4013178",
+      "number": "STRY0010009",
+      "title": "Recurring Tasks",
+      "state": "-6",
+      "sourcePath": "docs/stories/US009-recurring-tasks.md",
+      "epic": "1941c35dc3510790d65e5b2ed4013186",
+      "storyPoints": null,
+      "blocked": false
+    },
+    {
+      "id": "US010",
+      "sys_id": "a051475dc3510790d65e5b2ed401319d",
+      "number": "STRY0010010",
+      "title": "Reminders",
+      "state": "-6",
+      "sourcePath": "docs/stories/US010-reminders.md",
+      "epic": "1941c35dc3510790d65e5b2ed4013186",
+      "storyPoints": null,
+      "blocked": false
+    }
+  ]
+}

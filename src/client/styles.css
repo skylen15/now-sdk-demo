@@ -1,0 +1,129 @@
+:root {
+    color: var(--now-color-text-primary, #172033);
+    background: var(--now-color-background-tertiary, #f6f8fb);
+    font-family: "Source Sans Pro", Arial, sans-serif;
+}
+
+body {
+    margin: 0;
+}
+
+.todo-shell {
+    min-height: 100vh;
+    box-sizing: border-box;
+    padding: 24px;
+}
+
+.todo-panel {
+    max-width: 860px;
+    margin: 0 auto;
+}
+
+.todo-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--now-color-border-secondary, #d8dee8);
+}
+
+.todo-header h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+}
+
+.todo-header p,
+.todo-state {
+    margin: 6px 0 0;
+    color: var(--now-color-text-secondary, #586475);
+}
+
+.todo-composer {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 10px;
+    align-items: end;
+    margin-top: 18px;
+}
+
+.todo-filters {
+    display: grid;
+    grid-template-columns: minmax(180px, 1.4fr) repeat(4, minmax(132px, 1fr));
+    gap: 10px;
+    align-items: end;
+    margin-top: 14px;
+}
+
+.todo-list {
+    list-style: none;
+    padding: 0;
+    margin: 18px 0 0;
+    border-top: 1px solid var(--now-color-border-secondary, #d8dee8);
+}
+
+.todo-row {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 12px;
+    align-items: center;
+    min-height: 58px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--now-color-border-secondary, #d8dee8);
+}
+
+.todo-row__content {
+    min-width: 0;
+}
+
+.todo-row__title {
+    display: block;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    line-height: 1.35;
+}
+
+.todo-row--completed .todo-row__title {
+    color: var(--now-color-text-secondary, #7a8696);
+    text-decoration: line-through;
+}
+
+.todo-row__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.todo-state {
+    min-height: 38px;
+    padding: 16px 0 0;
+}
+
+@media (max-width: 700px) {
+    .todo-shell {
+        padding: 16px;
+    }
+
+    .todo-header,
+    .todo-composer,
+    .todo-filters {
+        grid-template-columns: 1fr;
+    }
+
+    .todo-header {
+        display: grid;
+    }
+
+    .todo-row {
+        grid-template-columns: auto minmax(0, 1fr);
+        align-items: flex-start;
+    }
+
+    .todo-row__actions {
+        grid-column: 2;
+        justify-content: flex-start;
+    }
+}
