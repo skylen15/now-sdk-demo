@@ -12,6 +12,7 @@
         "harness:init": "node scripts/harness-init.mjs",
         "harness:validate": "node scripts/harness-validate.mjs",
         "harness:init:build": "node scripts/harness-init.mjs --build",
+        "test:due-dates": "node --experimental-strip-types --test scripts/due-dates.test.mjs",
         "build": "npm run generate-routes && now-sdk build",
         "deploy": "now-sdk install",
         "transform": "now-sdk transform",
