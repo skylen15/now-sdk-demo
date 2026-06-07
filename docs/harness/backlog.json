@@ -1,0 +1,40 @@
+{
+  "source": "repository inspection",
+  "stories": [
+    {
+      "id": "US001",
+      "title": "Establish Project Harness Baseline",
+      "state": "Complete",
+      "normalizedState": "complete",
+      "sourcePath": "docs/stories/US001-project-foundation.md"
+    },
+    {
+      "id": "US002",
+      "title": "Strengthen Stateful Test Isolation",
+      "state": "Complete",
+      "normalizedState": "complete",
+      "sourcePath": "docs/stories/US002-stateful-test-isolation.md"
+    },
+    {
+      "id": "US003",
+      "title": "Define Supported ServiceNow API Compatibility",
+      "state": "Complete",
+      "normalizedState": "complete",
+      "sourcePath": "docs/stories/US003-api-compatibility.md"
+    },
+    {
+      "id": "US004",
+      "title": "Harden Package Release Verification",
+      "state": "Complete",
+      "normalizedState": "complete",
+      "sourcePath": "docs/stories/US004-release-verification.md"
+    },
+    {
+      "id": "US005",
+      "title": "ESM-Only GlideQuery Mock And 2.0 Migration",
+      "state": "Active",
+      "normalizedState": "active",
+      "sourcePath": "docs/stories/US005-esm-glide-query.md"
+    }
+  ]
+}
