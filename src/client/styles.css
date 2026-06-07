@@ -51,7 +51,7 @@ body {
 
 .todo-filters {
     display: grid;
-    grid-template-columns: minmax(180px, 1.4fr) repeat(4, minmax(132px, 1fr));
+    grid-template-columns: minmax(180px, 1.4fr) repeat(5, minmax(120px, 1fr));
     gap: 10px;
     align-items: end;
     margin-top: 14px;
@@ -66,7 +66,7 @@ body {
 
 .todo-row {
     display: grid;
-    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-columns: auto minmax(0, 1fr) minmax(220px, 0.7fr) auto;
     gap: 12px;
     align-items: center;
     min-height: 58px;
@@ -88,6 +88,57 @@ body {
 .todo-row--completed .todo-row__title {
     color: var(--now-color-text-secondary, #7a8696);
     text-decoration: line-through;
+}
+
+.todo-row--overdue {
+    border-left: 3px solid var(--now-color_alert--critical-2, #c83c36);
+    padding-left: 9px;
+}
+
+.todo-row__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 4px;
+    color: var(--now-color-text-secondary, #586475);
+    font-size: 13px;
+}
+
+.todo-priority {
+    padding: 1px 6px;
+    border-radius: 10px;
+    background: var(--now-color-background-secondary, #edf1f6);
+}
+
+.todo-priority--high,
+.todo-priority--urgent {
+    color: var(--now-color_alert--critical-3, #9f2925);
+    background: var(--now-color_alert--critical-0, #fbe9e8);
+}
+
+.todo-row__schedule {
+    display: grid;
+    grid-template-columns: minmax(130px, 1fr) minmax(100px, 1fr);
+    gap: 8px;
+    align-items: end;
+}
+
+.todo-row__schedule label {
+    display: grid;
+    gap: 4px;
+    color: var(--now-color-text-secondary, #586475);
+    font-size: 12px;
+}
+
+.todo-row__schedule input {
+    box-sizing: border-box;
+    min-height: 32px;
+    padding: 5px 7px;
+    border: 1px solid var(--now-color-border-secondary, #a9b3c1);
+    border-radius: 4px;
+    color: inherit;
+    background: var(--now-color-background-primary, #fff);
+    font: inherit;
 }
 
 .todo-row__actions {
@@ -125,5 +176,10 @@ body {
     .todo-row__actions {
         grid-column: 2;
         justify-content: flex-start;
+    }
+
+    .todo-row__schedule {
+        grid-column: 2;
+        grid-template-columns: 1fr;
     }
 }

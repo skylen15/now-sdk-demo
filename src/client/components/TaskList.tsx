@@ -1,4 +1,4 @@
-import type { TodoTask } from '../services/todo-api'
+import type { TodoTask, TodoTaskPatch } from '../services/todo-api'
 import { TaskRow } from './TaskRow'
 
 interface TaskListProps {
@@ -11,6 +11,7 @@ interface TaskListProps {
     onCancelEdit: (task: TodoTask) => void
     onSaveEdit: (task: TodoTask) => Promise<unknown>
     onToggle: (task: TodoTask, completed: boolean) => Promise<unknown>
+    onUpdate: (task: TodoTask, changes: TodoTaskPatch) => Promise<unknown>
     onDelete: (task: TodoTask) => void
 }
 
@@ -24,6 +25,7 @@ export function TaskList({
     onCancelEdit,
     onSaveEdit,
     onToggle,
+    onUpdate,
     onDelete,
 }: TaskListProps) {
     return (
@@ -40,6 +42,7 @@ export function TaskList({
                     onCancelEdit={onCancelEdit}
                     onSaveEdit={onSaveEdit}
                     onToggle={onToggle}
+                    onUpdate={onUpdate}
                     onDelete={onDelete}
                 />
             ))}

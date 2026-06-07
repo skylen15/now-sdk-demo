@@ -4,6 +4,8 @@ import { display, value } from './fields'
 export type StatusFilter = 'all' | 'active' | 'completed'
 export type DueFilter = 'any' | 'today' | 'upcoming' | 'overdue'
 export type PriorityFilter = 'any' | 'low' | 'normal' | 'high' | 'urgent'
+export type TaskPriority = Exclude<PriorityFilter, 'any'>
+export type SortMode = 'updated' | 'due' | 'priority'
 
 export interface TodoFilterState {
     status: StatusFilter
@@ -11,6 +13,7 @@ export interface TodoFilterState {
     priority: PriorityFilter
     tag: string
     search: string
+    sort: SortMode
 }
 
 export type TaskTagIndex = Record<string, Set<string>>
@@ -23,6 +26,7 @@ export const defaultFilterState: TodoFilterState = {
     priority: 'any',
     tag: anyTagFilter,
     search: '',
+    sort: 'updated',
 }
 
 export function isTaskCompleted(task: TodoTask): boolean {
@@ -41,7 +45,7 @@ export function localDateKey(date: Date): string {
     return `${year}-${month}-${day}`
 }
 
-function parseServiceNowDateTime(raw: string): Date | null {
+export function parseServiceNowDateTime(raw: string): Date | null {
     if (!raw) return null
     const normalized = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/.test(raw)
         ? raw.replace(' ', 'T') + 'Z'
@@ -50,12 +54,35 @@ function parseServiceNowDateTime(raw: string): Date | null {
     return Number.isNaN(date.getTime()) ? null : date
 }
 
-function dueDateKey(task: TodoTask): string {
+export function dueDateKey(task: TodoTask): string {
     const actualDate = parseServiceNowDateTime(value(task.due_at))
     if (actualDate) return localDateKey(actualDate)
 
     const displayDate = display(task.due_at).match(/\d{4}-\d{2}-\d{2}/)?.[0]
     return displayDate || ''
+}
+
+export function isTaskOverdue(task: TodoTask, todayKey = localDateKey(new Date())): boolean {
+    const taskDueKey = dueDateKey(task)
+    return Boolean(taskDueKey && taskDueKey < todayKey && !isTaskCompleted(task))
+}
+
+export function dueDateInputValue(task: TodoTask): string {
+    return dueDateKey(task)
+}
+
+export function dueDateDisplay(task: TodoTask): string {
+    const actualDate = parseServiceNowDateTime(value(task.due_at))
+    if (actualDate) return new Intl.DateTimeFormat(undefined, { dateStyle: 'medium' }).format(actualDate)
+    return display(task.due_at)
+}
+
+export function localDateEndAsServiceNowValue(dateKey: string): string {
+    if (!dateKey) return ''
+    const [year, month, day] = dateKey.split('-').map(Number)
+    const localEnd = new Date(year, month - 1, day, 23, 59, 59)
+    if (Number.isNaN(localEnd.getTime())) return ''
+    return localEnd.toISOString().slice(0, 19).replace('T', ' ')
 }
 
 function matchesStatus(task: TodoTask, status: StatusFilter): boolean {
@@ -89,13 +116,37 @@ function matchesSearch(task: TodoTask, search: string): boolean {
     return `${display(task.title)} ${display(task.notes)}`.toLowerCase().includes(needle)
 }
 
+const priorityRank: Record<TaskPriority, number> = {
+    urgent: 0,
+    high: 1,
+    normal: 2,
+    low: 3,
+}
+
+function sortTasks(tasks: TodoTask[], sort: SortMode): TodoTask[] {
+    if (sort === 'updated') return tasks
+
+    return tasks.map((task, index) => ({ task, index })).sort((left, right) => {
+        if (sort === 'priority') {
+            const leftRank = priorityRank[value(left.task.priority) as TaskPriority] ?? priorityRank.normal
+            const rightRank = priorityRank[value(right.task.priority) as TaskPriority] ?? priorityRank.normal
+            return leftRank - rightRank || left.index - right.index
+        }
+
+        const leftDue = dueDateKey(left.task) || '9999-12-31'
+        const rightDue = dueDateKey(right.task) || '9999-12-31'
+        return leftDue.localeCompare(rightDue) || left.index - right.index
+    }).map(({ task }) => task)
+}
+
 export function filterTasks(tasks: TodoTask[], filters: TodoFilterState, taskTagIndex: TaskTagIndex): TodoTask[] {
     const todayKey = localDateKey(new Date())
-    return tasks.filter((task) =>
+    const filtered = tasks.filter((task) =>
         matchesStatus(task, filters.status) &&
         matchesDue(task, filters.due, todayKey) &&
         matchesPriority(task, filters.priority) &&
         matchesTag(task, filters.tag, taskTagIndex) &&
         matchesSearch(task, filters.search)
     )
+    return sortTasks(filtered, filters.sort)
 }

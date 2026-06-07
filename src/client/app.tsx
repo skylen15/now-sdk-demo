@@ -7,7 +7,7 @@ import { TaskComposer } from './components/TaskComposer'
 import { TaskFilters } from './components/TaskFilters'
 import { TaskList } from './components/TaskList'
 import { TodoState } from './components/TodoState'
-import { createTask, deleteTask, listTags, listTaskTags, listTasks, TodoTask, updateTask } from './services/todo-api'
+import { createTask, deleteTask, listTags, listTaskTags, listTasks, updateTask, type TodoTask, type TodoTaskPatch } from './services/todo-api'
 import { display, value } from './utils/fields'
 import { defaultFilterState, filterTasks, isTaskCompleted, taskId, type TaskTagIndex, type TodoFilterState } from './utils/task-filters'
 
@@ -50,11 +50,8 @@ export default function App() {
 
     const createMutation = useMutation({ mutationFn: createTask, onSuccess: refreshTasks })
     const updateMutation = useMutation({
-        mutationFn: ({ task, completed, title }: { task: TodoTask; completed?: boolean; title?: string }) =>
-            updateTask(taskId(task), {
-                ...(typeof completed === 'boolean' ? { completed, status: completed ? 'completed' : 'active' } : {}),
-                ...(typeof title === 'string' ? { title } : {}),
-            }),
+        mutationFn: ({ task, changes }: { task: TodoTask; changes: TodoTaskPatch }) =>
+            updateTask(taskId(task), changes),
         onSuccess: refreshTasks,
     })
     const deleteMutation = useMutation({ mutationFn: deleteTask, onSuccess: refreshTasks })
@@ -95,7 +92,7 @@ export default function App() {
         const id = taskId(task)
         const title = (drafts[id] || '').trim()
         if (!title) return
-        await updateMutation.mutateAsync({ task, title })
+        await updateMutation.mutateAsync({ task, changes: { title } })
         setEditingTaskId(null)
         setDrafts((current) => {
             const next = { ...current }
@@ -151,7 +148,11 @@ export default function App() {
                         onDraftChange={handleDraftChange}
                         onCancelEdit={handleCancelEdit}
                         onSaveEdit={handleSaveEdit}
-                        onToggle={(task, completed) => updateMutation.mutateAsync({ task, completed })}
+                        onToggle={(task, completed) => updateMutation.mutateAsync({
+                            task,
+                            changes: { completed, status: completed ? 'completed' : 'active' },
+                        })}
+                        onUpdate={(task, changes) => updateMutation.mutateAsync({ task, changes })}
                         onDelete={(task) => setPendingAction({ type: 'delete', task })}
                     />
                 )}

@@ -16,6 +16,8 @@ export interface TodoTaskPatch {
     title?: string
     completed?: boolean
     status?: 'active' | 'completed'
+    priority?: 'low' | 'normal' | 'high' | 'urgent'
+    due_at?: string
 }
 
 export interface TodoTag {

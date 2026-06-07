@@ -5,6 +5,7 @@ import {
     anyTagFilter,
     type DueFilter,
     type PriorityFilter,
+    type SortMode,
     type StatusFilter,
     type TodoFilterState,
 } from '../utils/task-filters'
@@ -37,6 +38,12 @@ const priorityItems: SelectItem[] = [
     { id: 'urgent', label: 'Urgent' },
 ]
 
+const sortItems: SelectItem[] = [
+    { id: 'updated', label: 'Recently updated' },
+    { id: 'due', label: 'Due date' },
+    { id: 'priority', label: 'Priority' },
+]
+
 export function TaskFilters({ filters, tags, disabled, onChange }: TaskFiltersProps) {
     const setSearch = useCallback((search: string) => {
         onChange({ ...filters, search })
@@ -64,6 +71,10 @@ export function TaskFilters({ filters, tags, disabled, onChange }: TaskFiltersPr
 
     const setTag = useCallback<SelectSelectedItemSet>((event) => {
         onChange({ ...filters, tag: String(event.detail.payload.value) })
+    }, [filters, onChange])
+
+    const setSort = useCallback<SelectSelectedItemSet>((event) => {
+        onChange({ ...filters, sort: String(event.detail.payload.value) as SortMode })
     }, [filters, onChange])
 
     return (
@@ -108,6 +119,14 @@ export function TaskFilters({ filters, tags, disabled, onChange }: TaskFiltersPr
                 disabled={disabled || tags.length === 0}
                 search={tags.length > 8 ? 'contains' : 'none'}
                 onSelectedItemSet={setTag}
+            />
+            <Select
+                label="Sort"
+                items={sortItems}
+                selectedItem={filters.sort}
+                manageSelectedItem
+                disabled={disabled}
+                onSelectedItemSet={setSort}
             />
         </div>
     )
