@@ -17,13 +17,24 @@ This repository is for a ServiceNow Now SDK / Fluent application. Current planni
 - Glide types: `@servicenow/glide` 27.0.5.
 - Preserve any generated app scope, package metadata, and `now.config.json` once the app is scaffolded unless the user explicitly requests metadata changes.
 
+## Tech Stack
+
+- ServiceNow application platform using Now SDK and Fluent metadata.
+- `@servicenow/sdk` 4.7.0 and `@servicenow/glide` 27.0.5.
+- React 18.2.0 with TypeScript and `@servicenow/react-components`.
+- TanStack Router and TanStack Query for client routing and server-state access.
+- Node.js and npm for cross-platform scripts and build orchestration; runtime versions are not pinned in this repository.
+
 ## Documentation and Review Skills
 
 Refer to the following specialized documentation and review skill packages for workflows:
 
-- **Context7 Documentation**: [context7/SKILL.md](file:///D:/coding/sn/demo/docs/harness/skills/context7/SKILL.md) (Use when resolving external library queries)
-- **ServiceNow/SDK Documentation**: [sn-docs/SKILL.md](file:///D:/coding/sn/demo/docs/harness/skills/sn-docs/SKILL.md) (Use when checking ServiceNow API or platform behavior)
-- **Story Implementation Protocol**: [story-workflow.md](file:///D:/coding/sn/demo/docs/harness/story-workflow.md) (Follow this workflow when executing any task or story)
+- **Context7 Documentation**: [context7/SKILL.md](docs/harness/skills/context7/SKILL.md) (Use when resolving external library queries)
+- **ServiceNow/SDK Documentation**: [sn-docs/SKILL.md](docs/harness/skills/sn-docs/SKILL.md) (Use when checking ServiceNow API or platform behavior)
+- **Story Implementation Protocol**: [story-workflow.md](docs/harness/story-workflow.md) (Follow this workflow when executing any task or story)
+- **Session Bootstrap**: Run `npm run harness:init` before story work.
+- **Session Handoff**: Read and update `docs/harness/session-handoff.md` so unfinished work can resume safely.
+- **Verification Contract**: Follow `docs/harness/verification.md`; do not declare completion without recorded evidence.
 
 ## Hard Rules
 
@@ -40,16 +51,15 @@ Refer to the following specialized documentation and review skill packages for w
 - `tsr.config.json`: TanStack Router configuration for the React client.
 - `src/client/`: React UI page source.
 - `src/client/routes/`: TanStack Router route definitions.
+- `src/client/components/`: reusable React UI components.
 - `src/client/services/`: client-side service/data access helpers.
 - `src/client/utils/`: client-side utility modules.
 - `src/client/routeTree.gen.ts`: generated TanStack Router route tree.
-- `src/fluent/`: hand-authored Fluent metadata.
-- `src/fluent/acls/`: ACL metadata.
-- `src/fluent/business-rules/`: Business Rule metadata.
-- `src/fluent/roles/`: role metadata.
-- `src/fluent/tables/`: table metadata.
-- `src/fluent/ui-pages/`: UI Page metadata.
+- `src/fluent/`: hand-authored Fluent `.now.ts` metadata.
+- `src/fluent/<artifact-type>/`: metadata organized by record/artifact type using kebab-case folders, such as `tables/`, `acls/`, `roles/`, `ui-pages/`, or `business-rules/`.
 - `src/fluent/generated/`: SDK-generated Fluent metadata and key registry.
+- `src/server/`: reusable server-side implementation modules when needed.
+- `scripts/`: dependency-free project and harness automation.
 - `docs/`: product, story, and planning documentation.
 - `docs/harness/`: spec harness, backlog mirror, state, and decision history.
 - `docs/stories/`: story detail/source context.

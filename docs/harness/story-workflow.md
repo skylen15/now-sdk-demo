@@ -2,7 +2,10 @@
 
 ## 1. Intake
 
-- Read `AGENTS.md`, `state.md`, `backlog.json`, the active `docs/stories/*.md` file, and relevant harness rules.
+- Run `npm run harness:init` to verify the local harness and expose current state.
+- Read `AGENTS.md`, `state.md`, `session-handoff.md`, `backlog.json`, the active `docs/stories/*.md` file, and relevant harness rules.
+- Work on exactly one active story. Do not begin another story until the active story is complete or explicitly paused.
+- Treat the active story acceptance criteria and `## Testing` section as its definition of done.
 - Confirm ServiceNow story status from `rm_story` when instance work is in scope.
 
 ## 2. Skill-Based Review
@@ -31,6 +34,7 @@
 
 ## 5. Validation
 
+- Follow `verification.md`; completion requires recorded evidence.
 - Run `npm run build` when feasible.
 - Run or document ATF, REST, server, or UI smoke coverage required by the story.
 - Re-evaluate relevant skill packages against the changed files/diff before declaring the story complete.
@@ -38,6 +42,7 @@
 ## 6. Documentation and Sync
 
 - Update `state.md` and `decisions.md`.
+- Update `session-handoff.md` with completed work, verification evidence, remaining work, blockers, and the next command.
 - Sync ServiceNow Agile status when requested.
 - Regenerate `backlog.json` from ServiceNow after backlog changes.
 - Report which skills were used, what was found/checked, what changed, and what validation passed.

@@ -2,11 +2,11 @@
 
 ## Current Story
 
-US005 - Filters and Search
+US006 - Due Date and Priority
 
 ## Current Phase
 
-US005 locally implemented after platform-review, security-review, ui-review, test-review, and docs-review skill evaluation.
+US006 locally implemented after confirming US005 local acceptance-criteria coverage and applying platform-review, security-review, ui-review, test-review, and docs-review.
 
 ## ServiceNow Agile
 
@@ -27,14 +27,17 @@ US005 locally implemented after platform-review, security-review, ui-review, tes
 - Reimplemented the US001-US004 baseline with Now SDK metadata preserved.
 - Ran the US005 skill review workflow before editing.
 - Added client-side US005 filters/search over ACL-visible task data.
+- Reviewed US005 against its acceptance criteria and found no local implementation blockers.
+- Added US006 row-level due-date and priority editing, local-date display, due/priority sorting, and restrained overdue/priority styling.
 
 ## Active Risks
 
-- Story status values are currently raw ServiceNow state values until the harness defines display-state mapping.
 - ATF coverage is planned but not implemented.
 - US005 timezone boundary behavior still needs instance validation with known user timezone settings.
+- US006 build and installed-page/REST validation remain blocked until local dependencies or explicit instance access are available.
+- US006 end-of-local-day storage needs instance validation around daylight-saving and midnight boundaries.
 - Task-tag cross-owner reference integrity needs negative instance tests; ACLs still enforce owner isolation for reads/writes.
 
 ## Next Action
 
-Run local build/static checks, then perform instance smoke/REST/ATF validation if explicitly requested.
+Make local dependencies available and rerun `npm run build`, then perform US006 installed-page and REST smoke validation if explicitly requested.

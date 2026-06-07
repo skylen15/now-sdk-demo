@@ -9,6 +9,9 @@
     "scripts": {
         "generate-routes": "tsr generate",
         "watch-routes": "tsr watch",
+        "harness:init": "node scripts/harness-init.mjs",
+        "harness:validate": "node scripts/harness-validate.mjs",
+        "harness:init:build": "node scripts/harness-init.mjs --build",
         "build": "npm run generate-routes && now-sdk build",
         "deploy": "now-sdk install",
         "transform": "now-sdk transform",

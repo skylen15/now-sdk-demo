@@ -5,3 +5,4 @@
 - Use `rm_story` for Personal Todo harness stories and `rm_epic` for the parent epic. Do not use `sn_safe_story` unless the project intentionally adopts SAFe planning.
 - Keep `docs/stories/*.md` as story detail/source context, but sync story tracking state from ServiceNow Agile.
 - Skill packages live under `docs/harness/skills/<skill-name>/SKILL.md` and are evaluated inline during the story workflow.
+- Start sessions with `npm run harness:init`, resume from `session-handoff.md`, and require evidence from `verification.md` before completion.

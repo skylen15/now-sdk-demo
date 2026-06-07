@@ -57,7 +57,7 @@ Boundary behavior near midnight must be validated on an instance with a known us
 Status: Accepted
 
 Decision:
-US005 uses a structured client filter state with `{status, due, priority, tag, search}` and derives the visible list locally from ACL-visible Table API records. The client does not build arbitrary encoded queries from search text.
+US005 uses a structured client filter state with `{status, due, priority, tag, search, sort}` and derives the visible list locally from ACL-visible Table API records. The client does not build arbitrary encoded queries from search text.
 
 Reason:
 This keeps search/filter behavior reload-free, avoids encoded-query injection risks, and gives US008 saved filters a stable state shape to persist later.
@@ -77,3 +77,36 @@ Project review knowledge should be reusable across implementation, review, and v
 
 Consequences:
 Future platform, security, UI, test, and documentation guidance should be added to the relevant skill package first. Add subagent definitions only when isolation or parallel execution is required.
+
+## DEC-007: Preserve Platform State and Add Local Normalized State
+
+Status: Accepted
+
+Decision:
+Keep each story's raw ServiceNow `state` value in `backlog.json` and add a
+`normalizedState` value limited to `planned`, `active`, `blocked`, or `complete`.
+Exactly one local story must be `active`.
+
+Reason:
+Raw ServiceNow state values preserve source fidelity but are not readable enough
+for local agent scope control. A separate normalized value avoids guessing at
+instance-specific state mappings while giving the harness deterministic workflow
+states.
+
+Consequences:
+Backlog regeneration must preserve or deliberately recalculate `normalizedState`.
+The harness validator rejects missing, invalid, duplicate, or multiple-active
+story state.
+
+## DEC-008: US006 Calendar-Date Storage
+
+Status: Accepted
+
+Decision:
+US006 treats a selected due date as a browser-local calendar date and stores it in the existing `due_at` GlideDateTime field as the UTC internal-format instant corresponding to 23:59:59 on that local date. Clearing the date writes an empty value.
+
+Reason:
+The existing US002 data model uses `DateTimeColumn`, while US005 and US006 present due dates as local calendar dates. ServiceNow GlideDateTime actual values use UTC internal format, and end-of-local-day storage keeps the task due for the full selected local date.
+
+Consequences:
+Client display, filtering, sorting, and overdue styling must continue converting the actual UTC value back to a browser-local date. Instance validation with a known user timezone remains required around daylight-saving and midnight boundaries.

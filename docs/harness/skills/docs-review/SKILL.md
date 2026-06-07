@@ -23,7 +23,8 @@ Use this skill when story files, harness state, decisions, acceptance criteria a
 
 - Keep durable decisions in `decisions.md`.
 - Before recommending new documentation structures, verify whether the PRD, story files, harness state, decisions, backlog mirror, or existing rules already provide the needed place for the information.
-- Keep transient progress in `state.md`.
+- Keep canonical current story, phase, risks, and next action in `state.md`.
+- Keep only session-specific completed work, verification evidence, blockers, and resume context in `session-handoff.md`.
 - Do not duplicate long story bodies in `backlog.json`.
 - Preserve ServiceNow Agile as the backlog source of truth.
 
