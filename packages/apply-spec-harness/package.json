@@ -1,6 +1,6 @@
 {
   "name": "@kobidev/apply-spec-harness",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Apply a portable spec-driven development harness to an existing Node.js project",
   "license": "MIT",
   "type": "module",
