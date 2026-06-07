@@ -22,6 +22,7 @@
         "types": "now-sdk dependencies"
     },
     "dependencies": {
+        "@kobidev/now-sdk-mock": "^2.0.1",
         "@servicenow/react-components": "^0.1.0",
         "@tanstack/react-query": "^5.101.0",
         "@tanstack/react-router": "^1.170.11",
