@@ -15,9 +15,11 @@ Completion requires evidence, not an agent confidence statement.
 2. Review the changed-file diff against every relevant skill and rule.
 3. Run `npm run build` when dependencies are available.
 4. Run the story-specific checks identified by `test-review/SKILL.md`.
-5. Record commands, pass/fail results, and unverified checks in `session-handoff.md`.
-6. Update `state.md` and `decisions.md` when their durable content changed.
-7. Confirm unrelated changes were not included.
+5. For server-side script changes, run feasible local checks with `@kobidev/now-sdk-mock` before planning ATF validation.
+6. For UI Page changes, run feasible Playwright checks before instance smoke validation.
+7. Record commands, pass/fail results, and unverified checks in `session-handoff.md`.
+8. Update `state.md` and `decisions.md` when their durable content changed.
+9. Confirm unrelated changes were not included.
 
 The bootstrap runs the same checks as `npm run harness:validate`. A harness consistency failure
 blocks implementation and completion until corrected.

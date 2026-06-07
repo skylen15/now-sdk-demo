@@ -110,6 +110,10 @@ Use the real company code from the target instance when available.
 ## Validation
 
 - Run `npm run build` or `npx @servicenow/sdk build` after metadata or Fluent changes when feasible.
+- For server-side script behavior, test locally with `@kobidev/now-sdk-mock` first; use the cloned source under `repos/now-sdk-mock` for examples and API details.
+- Use ATF later only when server-side behavior cannot be validated locally or needs instance/platform enforcement.
+- Use Playwright for UI Page validation; use the cloned source under `repos/playwright` for examples and API details.
+- For TanStack Router and TanStack Query changes, use the cloned sources under `repos/tanstack-router` and `repos/tanstack-query` for current patterns and API details.
 - For XML-only edits, validate changed XML files are well-formed.
 - Do not run deploy/install commands unless explicitly requested.
 - If instance-side validation is required, authenticate explicitly and verify the selected SDK alias before running instance operations.
