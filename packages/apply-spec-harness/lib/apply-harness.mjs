@@ -7,6 +7,10 @@ const packageRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "
 const validPresets = new Set(["generic", "servicenow-now-sdk"]);
 const agentsMarker = "<!-- spec-harness:start -->";
 const serviceNowDocsRepository = "https://github.com/ServiceNow/ServiceNowDocs.git";
+const nowSdkMockRepository = "https://github.com/skylen15/now-sdk-mock.git";
+const playwrightRepository = "https://github.com/microsoft/playwright.git";
+const tanstackRouterRepository = "https://github.com/TanStack/router.git";
+const tanstackQueryRepository = "https://github.com/TanStack/query.git";
 
 export function parseArguments(args) {
   const valueAfter = (name) => {
@@ -15,12 +19,18 @@ export function parseArguments(args) {
   };
   const valueOptions = new Set(["--preset", "--servicenow-release"]);
   const positional = args.find((arg, index) => !arg.startsWith("-") && !valueOptions.has(args[index - 1]));
-  const preset = valueAfter("--preset") ?? "generic";
+  const explicitPreset = valueAfter("--preset");
+  const preset = explicitPreset ?? "generic";
   if (!validPresets.has(preset)) throw new Error(`Unknown preset '${preset}'. Use generic or servicenow-now-sdk.`);
   return {
     target: positional ?? ".",
     preset,
+    presetProvided: Boolean(explicitPreset),
     serviceNowRelease: valueAfter("--servicenow-release"),
+    includeTanstackRouter: !args.includes("--without-tanstack-router"),
+    tanstackRouterProvided: args.includes("--with-tanstack-router") || args.includes("--without-tanstack-router"),
+    includeTanstackQuery: !args.includes("--without-tanstack-query"),
+    tanstackQueryProvided: args.includes("--with-tanstack-query") || args.includes("--without-tanstack-query"),
     dryRun: args.includes("--dry-run"),
     force: args.includes("--force"),
     help: args.includes("--help") || args.includes("-h"),
@@ -33,6 +43,10 @@ export function printHelp() {
 Options:
   --preset generic|servicenow-now-sdk  Template preset (default: generic)
   --servicenow-release <release>       ServiceNow docs branch (default: zurich)
+  --with-tanstack-router               Clone TanStack Router (default)
+  --without-tanstack-router            Skip TanStack Router
+  --with-tanstack-query                Clone TanStack Query (default)
+  --without-tanstack-query             Skip TanStack Query
   --dry-run                            Preview changes
   --force                              Replace conflicting harness files
   -h, --help                           Show help`);
@@ -72,28 +86,64 @@ export function applyHarness(options) {
 
   if (options.preset === "servicenow-now-sdk") {
     const serviceNowRelease = options.serviceNowRelease?.trim().toLowerCase() || "zurich";
-    const docsPath = path.join(target, "repos", "servicenow-docs");
-    const relativeDocsPath = "repos/servicenow-docs";
-    if (fs.existsSync(docsPath)) {
-      conflicts.push(relativeDocsPath);
-    } else {
-      actions.push(`clone ${serviceNowDocsRepository}#${serviceNowRelease} ${relativeDocsPath}`);
-      if (!options.dryRun) {
-        fs.mkdirSync(path.dirname(docsPath), { recursive: true });
-        const gitRunner = options.gitRunner ?? spawnSync;
-        const result = gitRunner("git", [
-          "clone",
-          "--branch",
-          serviceNowRelease,
-          "--single-branch",
-          serviceNowDocsRepository,
-          docsPath,
-        ], { encoding: "utf8" });
-        if (result.status !== 0) {
-          fs.rmSync(docsPath, { recursive: true, force: true });
-          throw new Error(`Unable to clone ServiceNow docs: ${result.stderr?.trim() || "git clone failed"}`);
-        }
+    const cloneRepository = ({ repository, branch, destination, label }) => {
+      const checkoutPath = path.join(target, destination);
+      if (fs.existsSync(checkoutPath)) {
+        conflicts.push(destination);
+        return;
       }
+      actions.push(`clone ${repository}#${branch} ${destination}`);
+      if (options.dryRun) return;
+
+      fs.mkdirSync(path.dirname(checkoutPath), { recursive: true });
+      const gitRunner = options.gitRunner ?? spawnSync;
+      const result = gitRunner("git", [
+        "clone",
+        "--branch",
+        branch,
+        "--single-branch",
+        repository,
+        checkoutPath,
+      ], { encoding: "utf8" });
+      if (result.status !== 0) {
+        fs.rmSync(checkoutPath, { recursive: true, force: true });
+        throw new Error(`Unable to clone ${label}: ${result.stderr?.trim() || "git clone failed"}`);
+      }
+    };
+
+    cloneRepository({
+      repository: serviceNowDocsRepository,
+      branch: serviceNowRelease,
+      destination: "repos/servicenow-docs",
+      label: "ServiceNow docs",
+    });
+    cloneRepository({
+      repository: nowSdkMockRepository,
+      branch: "main",
+      destination: "repos/now-sdk-mock",
+      label: "now-sdk-mock",
+    });
+    cloneRepository({
+      repository: playwrightRepository,
+      branch: "main",
+      destination: "repos/playwright",
+      label: "Playwright",
+    });
+    if (options.includeTanstackRouter !== false) {
+      cloneRepository({
+        repository: tanstackRouterRepository,
+        branch: "main",
+        destination: "repos/tanstack-router",
+        label: "TanStack Router",
+      });
+    }
+    if (options.includeTanstackQuery !== false) {
+      cloneRepository({
+        repository: tanstackQueryRepository,
+        branch: "main",
+        destination: "repos/tanstack-query",
+        label: "TanStack Query",
+      });
     }
   }
 
@@ -125,6 +175,7 @@ export function applyHarness(options) {
 - Run \`npm run harness:init\` before story work.
 - Follow \`docs/harness/story-workflow.md\` and \`docs/harness/verification.md\`.
 - Read and update \`docs/harness/session-handoff.md\`.
+- For ServiceNow work, use local references under \`repos/\`: \`servicenow-docs\`, \`now-sdk-mock\`, \`playwright\`, \`tanstack-router\`, and \`tanstack-query\` when present.
 <!-- spec-harness:end -->
 `);
   }
