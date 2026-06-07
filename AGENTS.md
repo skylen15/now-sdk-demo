@@ -35,6 +35,8 @@ Refer to the following specialized documentation and review skill packages for w
 - **Session Bootstrap**: Run `npm run harness:init` before story work.
 - **Session Handoff**: Read and update `docs/harness/session-handoff.md` so unfinished work can resume safely.
 - **Verification Contract**: Follow `docs/harness/verification.md`; do not declare completion without recorded evidence.
+- **Architecture**: Read `ARCHITECTURE.md` when changing system boundaries or component responsibilities.
+- **Quality and Debt**: Update `docs/harness/quality-score.md` and `docs/harness/tech-debt.md` when evidence or cross-story debt changes.
 
 ## Hard Rules
 
@@ -61,7 +63,9 @@ Refer to the following specialized documentation and review skill packages for w
 - `src/server/`: reusable server-side implementation modules when needed.
 - `scripts/`: dependency-free project and harness automation.
 - `docs/`: product, story, and planning documentation.
+- `ARCHITECTURE.md`: durable system boundaries and component responsibilities.
 - `docs/harness/`: spec harness, backlog mirror, state, and decision history.
+- `docs/generated/`: generated, reviewable documentation; do not edit generated files by hand.
 - `docs/stories/`: story detail/source context.
 - `references/`: read-only reference exports, including ServiceNow instance schema snapshots.
 - `repos/`: read-only vendored source repositories used for implementation examples and local documentation.
