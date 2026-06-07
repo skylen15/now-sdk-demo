@@ -15,6 +15,27 @@ ServiceNow Agile is the backlog source of truth. The local `backlog.json` file i
 7. Apply all relevant rules from `rules/`.
 8. Follow `verification.md` before declaring work complete.
 9. Record durable architecture decisions in `decisions.md`.
+10. Track evidence-based quality trends in `quality-score.md`.
+11. Track actionable cross-story engineering debt in `tech-debt.md`.
+
+## Apply To Another Project
+
+Preview a dependency-free harness installation into another Node.js project:
+
+```sh
+npm run harness:apply -- ../another-project --dry-run
+```
+
+Apply it:
+
+```sh
+npm run harness:apply -- ../another-project
+```
+
+The installer copies portable harness rules, skills, workflow, verification, and
+lifecycle scripts. It generates a valid starter backlog and story, merges the
+required npm scripts, and skips existing files by default. Use `--force` only
+when intentionally replacing an existing harness.
 
 `npm run harness:validate` enforces one active normalized story, state/backlog
 alignment, unique story IDs, existing source paths, and required acceptance and
@@ -42,6 +63,9 @@ Specialized review guidance lives in portable base-spec skill packages under `do
 - Current durable state: `docs/harness/state.md`
 - Session continuity: `docs/harness/session-handoff.md`
 - Completion evidence contract: `docs/harness/verification.md`
+- Architecture and system boundaries: `ARCHITECTURE.md`
+- Quality trends and known gaps: `docs/harness/quality-score.md`
+- Cross-story technical debt: `docs/harness/tech-debt.md`
 - Product requirements: `docs/servicenow-personal-todo-prd.md`
 - Story detail: `docs/stories/*.md`
 - App implementation: `src/`

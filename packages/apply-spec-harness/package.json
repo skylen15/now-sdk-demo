@@ -1,0 +1,32 @@
+{
+  "name": "@kobidev/apply-spec-harness",
+  "version": "0.1.0",
+  "description": "Apply a portable spec-driven development harness to an existing Node.js project",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "apply-spec-harness": "bin/apply-spec-harness.mjs"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "bin",
+    "lib",
+    "templates",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "node --test",
+    "pack:check": "npm pack --dry-run"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "agent",
+    "harness",
+    "spec-driven-development",
+    "servicenow"
+  ]
+}
