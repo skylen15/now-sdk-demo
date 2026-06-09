@@ -7,14 +7,15 @@ import {
   Table,
 } from "@servicenow/sdk/core";
 
+const defaultCurrentUser = "javascript:gs.getUserID()";
+
 export const x_2063979_todo_task = Table({
   name: "x_2063979_todo_task",
   label: "Todo Task",
   display: "title",
   accessibleFrom: "package_private",
-  callerAccess: "none",
   allowWebServiceAccess: true,
-  actions: ["create", "read", "update", "delete"],
+  actions: ["read", "update", "create"],
   audit: true,
   schema: {
     owner: ReferenceColumn({
@@ -22,6 +23,7 @@ export const x_2063979_todo_task = Table({
       referenceTable: "sys_user",
       mandatory: true,
       cascadeRule: "restrict",
+      default: defaultCurrentUser,
     }),
     title: StringColumn({ label: "Title", mandatory: true, maxLength: 255 }),
     status: StringColumn({
@@ -51,7 +53,12 @@ export const x_2063979_todo_task = Table({
     notes: StringColumn({ label: "Notes", maxLength: 4000 }),
     reminder_at: DateTimeColumn({ label: "Reminder" }),
     recurrence: JsonColumn({ label: "Recurrence" }),
-    completed: BooleanColumn({ label: "Completed", defaultValue: false }),
+    recurrence_source: ReferenceColumn({
+      label: "Recurrence source",
+      referenceTable: "x_2063979_todo_task",
+      cascadeRule: "clear",
+    }),
+    completed: BooleanColumn({ label: "Completed" }),
     completed_at: DateTimeColumn({ label: "Completed at" }),
   },
 });
@@ -61,9 +68,8 @@ export const x_2063979_todo_tag = Table({
   label: "Todo Tag",
   display: "name",
   accessibleFrom: "package_private",
-  callerAccess: "none",
   allowWebServiceAccess: true,
-  actions: ["create", "read", "update", "delete"],
+  actions: ["read", "update", "create"],
   audit: true,
   schema: {
     owner: ReferenceColumn({
@@ -71,6 +77,7 @@ export const x_2063979_todo_tag = Table({
       referenceTable: "sys_user",
       mandatory: true,
       cascadeRule: "restrict",
+      default: defaultCurrentUser,
     }),
     name: StringColumn({ label: "Name", mandatory: true, maxLength: 100 }),
     normalized_name: StringColumn({
@@ -86,9 +93,8 @@ export const x_2063979_todo_task_tag = Table({
   label: "Todo Task Tag",
   display: "task",
   accessibleFrom: "package_private",
-  callerAccess: "none",
   allowWebServiceAccess: true,
-  actions: ["create", "read", "update", "delete"],
+  actions: ["read", "update", "create"],
   audit: true,
   schema: {
     owner: ReferenceColumn({
@@ -96,6 +102,7 @@ export const x_2063979_todo_task_tag = Table({
       referenceTable: "sys_user",
       mandatory: true,
       cascadeRule: "restrict",
+      default: defaultCurrentUser,
     }),
     task: ReferenceColumn({
       label: "Task",
@@ -117,9 +124,8 @@ export const x_2063979_todo_saved_filter = Table({
   label: "Todo Saved Filter",
   display: "name",
   accessibleFrom: "package_private",
-  callerAccess: "none",
   allowWebServiceAccess: true,
-  actions: ["create", "read", "update", "delete"],
+  actions: ["read", "update", "create"],
   audit: true,
   schema: {
     owner: ReferenceColumn({
@@ -127,6 +133,7 @@ export const x_2063979_todo_saved_filter = Table({
       referenceTable: "sys_user",
       mandatory: true,
       cascadeRule: "restrict",
+      default: defaultCurrentUser,
     }),
     name: StringColumn({ label: "Name", mandatory: true, maxLength: 100 }),
     filter_state: JsonColumn({ label: "Filter state", mandatory: true }),

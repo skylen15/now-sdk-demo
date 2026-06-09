@@ -5,9 +5,61 @@ declare global {
         namespace Internal {
             interface Keys extends KeysRegistry {
                 explicit: {
+                    '0788ecbac3598f90d65e5b2ed4013168': {
+                        table: 'sys_scope_privilege'
+                        id: '0788ecbac3598f90d65e5b2ed4013168'
+                    }
+                    '0b88ecbac3598f90d65e5b2ed401313d': {
+                        table: 'sys_scope_privilege'
+                        id: '0b88ecbac3598f90d65e5b2ed401313d'
+                    }
+                    '0cd4f536c3d1cf90d65e5b2ed40131e5': {
+                        table: 'sys_atf_test_suite_test'
+                        id: '0cd4f536c3d1cf90d65e5b2ed40131e5'
+                    }
+                    '18d43936c3d1cf90d65e5b2ed4013105': {
+                        table: 'sys_atf_test_suite_test'
+                        id: '18d43936c3d1cf90d65e5b2ed4013105'
+                    }
+                    '22b4f136c3d1cf90d65e5b2ed40131f8': {
+                        table: 'sys_atf_test_suite'
+                        id: '22b4f136c3d1cf90d65e5b2ed40131f8'
+                    }
+                    '4f88ecbac3598f90d65e5b2ed4013164': {
+                        table: 'sys_scope_privilege'
+                        id: '4f88ecbac3598f90d65e5b2ed4013164'
+                    }
+                    '54d43936c3d1cf90d65e5b2ed401310a': {
+                        table: 'sys_atf_test_suite_test'
+                        id: '54d43936c3d1cf90d65e5b2ed401310a'
+                    }
+                    '8748ecf2c31d4f90d65e5b2ed4013110': {
+                        table: 'sys_scope_privilege'
+                        id: '8748ecf2c31d4f90d65e5b2ed4013110'
+                    }
+                    '8f88ecbac3598f90d65e5b2ed4013149': {
+                        table: 'sys_scope_privilege'
+                        id: '8f88ecbac3598f90d65e5b2ed4013149'
+                    }
+                    '94d43936c3d1cf90d65e5b2ed401310c': {
+                        table: 'sys_atf_test_suite_test'
+                        id: '94d43936c3d1cf90d65e5b2ed401310c'
+                    }
+                    '96469411c3d98390d65e5b2ed40131c1': {
+                        table: 'sys_scope_privilege'
+                        id: '96469411c3d98390d65e5b2ed40131c1'
+                    }
+                    aa46d495c3d98390d65e5b2ed40131ce: {
+                        table: 'sys_scope_privilege'
+                        id: 'aa46d495c3d98390d65e5b2ed40131ce'
+                    }
                     bom_json: {
                         table: 'sys_module'
                         id: '5d34971e44524e628826408febdcf2dc'
+                    }
+                    f68868fac3950f90d65e5b2ed401315e: {
+                        table: 'sys_scope_privilege'
+                        id: 'f68868fac3950f90d65e5b2ed401315e'
                     }
                     package_json: {
                         table: 'sys_module'
@@ -117,6 +169,34 @@ declare global {
                         table: 'sys_atf_test'
                         id: '67dc3574093f49c181c0f272bbcbdb18'
                     }
+                    todo_reminder_change: {
+                        table: 'sys_atf_step'
+                        id: '9f26d3ea381b43f5bc5e46c5bec27183'
+                    }
+                    todo_reminder_clear: {
+                        table: 'sys_atf_step'
+                        id: 'ab243cd7681e4224a91bd96b2a4486e9'
+                    }
+                    todo_reminder_create_user: {
+                        table: 'sys_atf_step'
+                        id: '1b5fbb19acd0489aaa1dac09d26d51ac'
+                    }
+                    todo_reminder_crud_atf: {
+                        table: 'sys_atf_test'
+                        id: '58be1f18f74244f6856d849c06f851a6'
+                    }
+                    todo_reminder_insert_task: {
+                        table: 'sys_atf_step'
+                        id: 'fc0ea06191ba4f1388c0d745f7cc3c6e'
+                    }
+                    todo_reminder_validate_clear: {
+                        table: 'sys_atf_step'
+                        id: 'd4213ad0bf6e427690da3e2a1252ebb3'
+                    }
+                    todo_reminder_validate_set: {
+                        table: 'sys_atf_step'
+                        id: 'dbff3fc943354b5b8127599adc4df641'
+                    }
                     todo_saved_filter_create_admin_acl: {
                         table: 'sys_security_acl'
                         id: '56652158ac3b4b07aaa27a5a6a9a0355'
@@ -124,6 +204,18 @@ declare global {
                     todo_saved_filter_create_owner_acl: {
                         table: 'sys_security_acl'
                         id: 'ef3d483e80904f63940f111cc67934ea'
+                    }
+                    todo_saved_filter_create_user: {
+                        table: 'sys_atf_step'
+                        id: '94c70f13599c4ccfa0a344d69a36cd16'
+                    }
+                    todo_saved_filter_crud_atf: {
+                        table: 'sys_atf_test'
+                        id: '99510686ad0d4f5e83e4b8599d4202eb'
+                    }
+                    todo_saved_filter_delete: {
+                        table: 'sys_atf_step'
+                        id: '65a5dfa7c580403da29451c503185787'
                     }
                     todo_saved_filter_delete_admin_acl: {
                         table: 'sys_security_acl'
@@ -133,9 +225,14 @@ declare global {
                         table: 'sys_security_acl'
                         id: '214a121d7051441aa112d3151cf1f41f'
                     }
+                    todo_saved_filter_insert: {
+                        table: 'sys_atf_step'
+                        id: '5b4696d3b01c4848960abf93c5934d32'
+                    }
                     todo_saved_filter_normalize_before_save: {
                         table: 'sys_script'
                         id: '194976aea7c54d71ace314097322813d'
+                        deleted: true
                     }
                     todo_saved_filter_read_admin_acl: {
                         table: 'sys_security_acl'
@@ -144,6 +241,14 @@ declare global {
                     todo_saved_filter_read_owner_acl: {
                         table: 'sys_security_acl'
                         id: 'b718aa10d909451fb7d125f545ab0a73'
+                    }
+                    todo_saved_filter_rename: {
+                        table: 'sys_atf_step'
+                        id: '966892af309548d8880c3bf0dee804cd'
+                    }
+                    todo_saved_filter_validate: {
+                        table: 'sys_atf_step'
+                        id: 'c801422827e54f4292f703302227312f'
                     }
                     todo_saved_filter_write_admin_acl: {
                         table: 'sys_security_acl'
@@ -192,6 +297,10 @@ declare global {
                     todo_task_create_admin_acl: {
                         table: 'sys_security_acl'
                         id: '766f81657a454e37bb2d46e71d11396a'
+                    }
+                    todo_task_create_next_recurrence: {
+                        table: 'sys_script'
+                        id: '2a5e0be2e4ab45789d9f6e064661c061'
                     }
                     todo_task_create_owner_acl: {
                         table: 'sys_security_acl'
@@ -305,6 +414,22 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_element_mapping'
+                        id: '025e959ee8894882adadc61c7ddb922d'
+                        key: {
+                            field: 'field_values'
+                            id: 'fc0ea06191ba4f1388c0d745f7cc3c6e'
+                        }
+                    },
+                    {
+                        table: 'sys_variable_value'
+                        id: '02aba6c89593494a9482e284790e2c77'
+                        key: {
+                            document_key: '5b4696d3b01c4848960abf93c5934d32'
+                            variable: 'dd54cf535320220002c6435723dc34fd'
+                        }
+                    },
+                    {
                         table: 'sys_ux_lib_asset'
                         id: '03759791914842069b954781c499dd24'
                         key: {
@@ -361,11 +486,43 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_element_mapping'
+                        id: '093f53692b724e089780b483707235a5'
+                        key: {
+                            field: 'record_id'
+                            id: '966892af309548d8880c3bf0dee804cd'
+                        }
+                    },
+                    {
+                        table: 'sys_variable_value'
+                        id: '0986a2801bf14d7fbf237337fcf39f43'
+                        key: {
+                            document_key: 'd4213ad0bf6e427690da3e2a1252ebb3'
+                            variable: '52ed1e5b5360220002c6435723dc3421'
+                        }
+                    },
+                    {
+                        table: 'sys_index'
+                        id: '09f31bd0e0804bcc80c586ebc89f92c5'
+                        key: {
+                            logical_table_name: 'x_2063979_todo_task'
+                            col_name_string: 'recurrence_source'
+                        }
+                    },
+                    {
                         table: 'sys_variable_value'
                         id: '0a9d816f8818454eb26ca97990aec7ed'
                         key: {
                             document_key: 'e3bfb57d66884b2cbdc4060998833f46'
                             variable: '3d6d8b935320220002c6435723dc349c'
+                        }
+                    },
+                    {
+                        table: 'sys_element_mapping'
+                        id: '0ebb418c832e4597a3d19d1d0f2fc4b7'
+                        key: {
+                            field: 'record_id'
+                            id: '65a5dfa7c580403da29451c503185787'
                         }
                     },
                     {
@@ -451,6 +608,14 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_index'
+                        id: '1e006c19f3224e1bb027595856f3bfb3'
+                        key: {
+                            logical_table_name: 'x_2063979_todo_saved_filter'
+                            col_name_string: 'owner'
+                        }
+                    },
+                    {
                         table: 'sys_security_acl_role'
                         id: '1e712606dc0f493294ababf6fcaf4394'
                         key: {
@@ -461,6 +626,22 @@ declare global {
                                     name: 'x_2063979_todo.user'
                                 }
                             }
+                        }
+                    },
+                    {
+                        table: 'sys_element_mapping'
+                        id: '2127160bc7fb430b8e1296d7e9f7aa44'
+                        key: {
+                            field: 'record_id'
+                            id: 'd4213ad0bf6e427690da3e2a1252ebb3'
+                        }
+                    },
+                    {
+                        table: 'sys_variable_value'
+                        id: '2153521ff98042a4bbb1700fd2d8ffae'
+                        key: {
+                            document_key: '1b5fbb19acd0489aaa1dac09d26d51ac'
+                            variable: 'b27b2b29ff6033008d3f5d9ad53bf164'
                         }
                     },
                     {
@@ -493,11 +674,27 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_index'
+                        id: '2513297f0bb847a4b75d4dd473595d30'
+                        key: {
+                            logical_table_name: 'x_2063979_todo_task'
+                            col_name_string: 'owner'
+                        }
+                    },
+                    {
                         table: 'sys_variable_value'
                         id: '25376e0977504f86bf9c7aaed9ef192e'
                         key: {
                             document_key: 'fdd5cc60eedf4f8bbea5cc6f8c153c97'
                             variable: '334b7bb7675003007ba405225685ef72'
+                        }
+                    },
+                    {
+                        table: 'sys_variable_value'
+                        id: '25517daeca0549738918c8d8b246a909'
+                        key: {
+                            document_key: '9f26d3ea381b43f5bc5e46c5bec27183'
+                            variable: '53fb0f535320220002c6435723dc34ec'
                         }
                     },
                     {
@@ -507,6 +704,14 @@ declare global {
                             name: 'x_2063979_todo_task_tag'
                             element: 'NULL'
                             language: 'en'
+                        }
+                    },
+                    {
+                        table: 'sys_variable_value'
+                        id: '26409344bed34729be3e664047fda92c'
+                        key: {
+                            document_key: '966892af309548d8880c3bf0dee804cd'
+                            variable: '501c8f535320220002c6435723dc34da'
                         }
                     },
                     {
@@ -523,6 +728,14 @@ declare global {
                         key: {
                             name: 'x_2063979_todo_task'
                             element: 'NULL'
+                        }
+                    },
+                    {
+                        table: 'sys_variable_value'
+                        id: '29d40e9704ab492db2c90fc8ab09d1b9'
+                        key: {
+                            document_key: '966892af309548d8880c3bf0dee804cd'
+                            variable: '334b7bb7675003007ba405225685ef72'
                         }
                     },
                     {
@@ -602,6 +815,14 @@ declare global {
                     },
                     {
                         table: 'sys_variable_value'
+                        id: '322e66ae99454daaa79f3086ae80b54e'
+                        key: {
+                            document_key: '1b5fbb19acd0489aaa1dac09d26d51ac'
+                            variable: '8c07aba5ff6033008d3f5d9ad53bf13b'
+                        }
+                    },
+                    {
+                        table: 'sys_variable_value'
                         id: '325fbff421304cfcb7c6ea3ddac58fc5'
                         key: {
                             document_key: 'b07e2b5b03f64ddbb217280d312d7ef9'
@@ -662,6 +883,22 @@ declare global {
                             name: 'x_2063979_todo_saved_filter'
                             element: 'owner'
                             language: 'en'
+                        }
+                    },
+                    {
+                        table: 'sys_variable_value'
+                        id: '3823581b9b88444d8ba62cdc4bef1af8'
+                        key: {
+                            document_key: 'dbff3fc943354b5b8127599adc4df641'
+                            variable: '6aad5a575360220002c6435723dc34b0'
+                        }
+                    },
+                    {
+                        table: 'sys_variable_value'
+                        id: '3828a86935d247b28cf6abc9b00e1f3c'
+                        key: {
+                            document_key: 'ab243cd7681e4224a91bd96b2a4486e9'
+                            variable: 'bc4c43935320220002c6435723dc34a2'
                         }
                     },
                     {
@@ -750,6 +987,14 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_index'
+                        id: '404cc89035294dd4b2cbe9d67ac681f0'
+                        key: {
+                            logical_table_name: 'x_2063979_todo_task_tag'
+                            col_name_string: 'tag'
+                        }
+                    },
+                    {
                         table: 'sys_variable_value'
                         id: '405912f6f95240f18c5ad2c74839977d'
                         key: {
@@ -763,6 +1008,14 @@ declare global {
                         key: {
                             name: 'x_2063979_todo_tag'
                             element: 'name'
+                        }
+                    },
+                    {
+                        table: 'sys_variable_value'
+                        id: '42932ce4b79a4a7e98785327e25af1b3'
+                        key: {
+                            document_key: '5b4696d3b01c4848960abf93c5934d32'
+                            variable: 'e6e3c7535320220002c6435723dc3496'
                         }
                     },
                     {
@@ -826,10 +1079,34 @@ declare global {
                     },
                     {
                         table: 'sys_variable_value'
+                        id: '46e150d550934757bd1282c33c51c207'
+                        key: {
+                            document_key: '966892af309548d8880c3bf0dee804cd'
+                            variable: '46dbcb535320220002c6435723dc3409'
+                        }
+                    },
+                    {
+                        table: 'sys_variable_value'
+                        id: '4825870f6e054f74b8f9b464e90908a7'
+                        key: {
+                            document_key: '94c70f13599c4ccfa0a344d69a36cd16'
+                            variable: '8c07aba5ff6033008d3f5d9ad53bf13b'
+                        }
+                    },
+                    {
+                        table: 'sys_variable_value'
                         id: '48bf73e88ee04804b96439cbf011b7b5'
                         key: {
                             document_key: '83f5cf8941964c2e9c31f74283e37b4b'
                             variable: '1985e0ceff2433008d3f5d9ad53bf1ba'
+                        }
+                    },
+                    {
+                        table: 'sys_variable_value'
+                        id: '48e9fab663e34d9bbc9ad008ba66ba14'
+                        key: {
+                            document_key: '1b5fbb19acd0489aaa1dac09d26d51ac'
+                            variable: '6f69fc4aff6433008d3f5d9ad53bf18c'
                         }
                     },
                     {
@@ -949,6 +1226,14 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_index'
+                        id: '5173c1bc1d734e27ad25185ab81e23dc'
+                        key: {
+                            logical_table_name: 'x_2063979_todo_task_tag'
+                            col_name_string: 'task'
+                        }
+                    },
+                    {
                         table: 'sys_variable_value'
                         id: '527146373c0047c9a49eb19bdd64a808'
                         key: {
@@ -962,6 +1247,14 @@ declare global {
                         key: {
                             document_key: 'dd2a97b1a5ec456e9f5a0ebc4d541ca1'
                             variable: '52ed1e5b5360220002c6435723dc3421'
+                        }
+                    },
+                    {
+                        table: 'sys_variable_value'
+                        id: '52b837866f164e1b8e57cb88552294cb'
+                        key: {
+                            document_key: 'ab243cd7681e4224a91bd96b2a4486e9'
+                            variable: '501c8f535320220002c6435723dc34da'
                         }
                     },
                     {
@@ -991,6 +1284,14 @@ declare global {
                         key: {
                             document_key: '40cc950c0be34f0ca6c0c5dbb685e1b0'
                             variable: '46dbcb535320220002c6435723dc3409'
+                        }
+                    },
+                    {
+                        table: 'sys_index'
+                        id: '58d281483029496c8f84eca0597bf20a'
+                        key: {
+                            logical_table_name: 'x_2063979_todo_tag'
+                            col_name_string: 'owner'
                         }
                     },
                     {
@@ -1072,6 +1373,14 @@ declare global {
                     },
                     {
                         table: 'sys_variable_value'
+                        id: '5f65b660879048d2bd442418bffcbff9'
+                        key: {
+                            document_key: '5b4696d3b01c4848960abf93c5934d32'
+                            variable: '90144b535320220002c6435723dc3488'
+                        }
+                    },
+                    {
+                        table: 'sys_variable_value'
                         id: '614a075325f945e9accb0af24766f380'
                         key: {
                             document_key: 'b07e2b5b03f64ddbb217280d312d7ef9'
@@ -1092,6 +1401,14 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_variable_value'
+                        id: '623cb925939a4098a2db7ee4176f1f33'
+                        key: {
+                            document_key: 'c801422827e54f4292f703302227312f'
+                            variable: 'ff6e125353a0220002c6435723dc3442'
+                        }
+                    },
+                    {
                         table: 'sys_security_acl_role'
                         id: '623f7db8077e4bcf90af6ff71cf4fa98'
                         key: {
@@ -1102,6 +1419,24 @@ declare global {
                                     name: 'x_2063979_todo.user'
                                 }
                             }
+                        }
+                    },
+                    {
+                        table: 'sys_ui_list_element'
+                        id: '631969fac351cf90d65e5b2ed4013182'
+                        key: {
+                            list_id: {
+                                id: 'a31969fac351cf90d65e5b2ed401317c'
+                                key: {
+                                    name: 'x_2063979_todo_task'
+                                    view: 'Default view'
+                                    sys_domain: 'global'
+                                    element: 'NULL'
+                                    relationship: 'NULL'
+                                    parent: 'NULL'
+                                }
+                            }
+                            element: 'due_at'
                         }
                     },
                     {
@@ -1134,6 +1469,40 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_ui_list_element'
+                        id: '671969fac351cf90d65e5b2ed4013184'
+                        key: {
+                            list_id: {
+                                id: 'a31969fac351cf90d65e5b2ed401317c'
+                                key: {
+                                    name: 'x_2063979_todo_task'
+                                    view: 'Default view'
+                                    sys_domain: 'global'
+                                    element: 'NULL'
+                                    relationship: 'NULL'
+                                    parent: 'NULL'
+                                }
+                            }
+                            element: 'reminder_at'
+                        }
+                    },
+                    {
+                        table: 'sys_element_mapping'
+                        id: '696e9d70f1e44c8c9f0942c1c66ce9c9'
+                        key: {
+                            field: 'record_id'
+                            id: '9f26d3ea381b43f5bc5e46c5bec27183'
+                        }
+                    },
+                    {
+                        table: 'sys_variable_value'
+                        id: '69d8a351f29743118b482172583beb2e'
+                        key: {
+                            document_key: 'fc0ea06191ba4f1388c0d745f7cc3c6e'
+                            variable: 'dd54cf535320220002c6435723dc34fd'
+                        }
+                    },
+                    {
                         table: 'sys_user_role_contains'
                         id: '6a34fec9303a43afac1687569e4ba477'
                         key: {
@@ -1149,6 +1518,24 @@ declare global {
                                     name: 'x_2063979_todo.user'
                                 }
                             }
+                        }
+                    },
+                    {
+                        table: 'sys_ui_list_element'
+                        id: '6b1969fac351cf90d65e5b2ed4013183'
+                        key: {
+                            list_id: {
+                                id: 'a31969fac351cf90d65e5b2ed401317c'
+                                key: {
+                                    name: 'x_2063979_todo_task'
+                                    view: 'Default view'
+                                    sys_domain: 'global'
+                                    element: 'NULL'
+                                    relationship: 'NULL'
+                                    parent: 'NULL'
+                                }
+                            }
+                            element: 'recurrence'
                         }
                     },
                     {
@@ -1182,6 +1569,42 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_ui_list_element'
+                        id: '6f1969fac351cf90d65e5b2ed4013180'
+                        key: {
+                            list_id: {
+                                id: 'a31969fac351cf90d65e5b2ed401317c'
+                                key: {
+                                    name: 'x_2063979_todo_task'
+                                    view: 'Default view'
+                                    sys_domain: 'global'
+                                    element: 'NULL'
+                                    relationship: 'NULL'
+                                    parent: 'NULL'
+                                }
+                            }
+                            element: 'completed'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_list_element'
+                        id: '6f1969fac351cf90d65e5b2ed4013182'
+                        key: {
+                            list_id: {
+                                id: 'a31969fac351cf90d65e5b2ed401317c'
+                                key: {
+                                    name: 'x_2063979_todo_task'
+                                    view: 'Default view'
+                                    sys_domain: 'global'
+                                    element: 'NULL'
+                                    relationship: 'NULL'
+                                    parent: 'NULL'
+                                }
+                            }
+                            element: 'owner'
+                        }
+                    },
+                    {
                         table: 'sys_variable_value'
                         id: '6fa8d9068c4843049b7fc026b5733c10'
                         key: {
@@ -1195,6 +1618,14 @@ declare global {
                         key: {
                             document_key: '89a6b743b3cb417681fa9880327a0cec'
                             variable: 'e6e3c7535320220002c6435723dc3496'
+                        }
+                    },
+                    {
+                        table: 'sys_variable_value'
+                        id: '706d58b262484696bc6bf2c3ea429b24'
+                        key: {
+                            document_key: 'dbff3fc943354b5b8127599adc4df641'
+                            variable: '67400008676003007ba405225685efa4'
                         }
                     },
                     {
@@ -1222,6 +1653,30 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_variable_value'
+                        id: '7204228b12484f7d8cf874375d96989f'
+                        key: {
+                            document_key: '966892af309548d8880c3bf0dee804cd'
+                            variable: '53fb0f535320220002c6435723dc34ec'
+                        }
+                    },
+                    {
+                        table: 'sys_variable_value'
+                        id: '73d2040ed04d4b9abf5b4f1d2f39a011'
+                        key: {
+                            document_key: '65a5dfa7c580403da29451c503185787'
+                            variable: 'd13d0b935320220002c6435723dc34c8'
+                        }
+                    },
+                    {
+                        table: 'sys_index'
+                        id: '743ca60cd966450b8d58865c3a60011b'
+                        key: {
+                            logical_table_name: 'x_2063979_todo_task_tag'
+                            col_name_string: 'owner'
+                        }
+                    },
+                    {
                         table: 'sys_documentation'
                         id: '751d9f43a99d4e1881cbc056788551e2'
                         key: {
@@ -1236,6 +1691,14 @@ declare global {
                         key: {
                             field: 'record_id'
                             id: 'dd2a97b1a5ec456e9f5a0ebc4d541ca1'
+                        }
+                    },
+                    {
+                        table: 'sys_variable_value'
+                        id: '75fba933024d44b2b8c2af7e238d9df9'
+                        key: {
+                            document_key: 'c801422827e54f4292f703302227312f'
+                            variable: 'cbddfa135320220002c6435723dc3415'
                         }
                     },
                     {
@@ -1320,6 +1783,14 @@ declare global {
                     },
                     {
                         table: 'sys_variable_value'
+                        id: '7b7b263c2197437a9c98bdab3e0e3e78'
+                        key: {
+                            document_key: '94c70f13599c4ccfa0a344d69a36cd16'
+                            variable: 'b27b2b29ff6033008d3f5d9ad53bf164'
+                        }
+                    },
+                    {
+                        table: 'sys_variable_value'
                         id: '7b98f9d113e1469a9d11b7743ff55e1c'
                         key: {
                             document_key: '83f5cf8941964c2e9c31f74283e37b4b'
@@ -1333,6 +1804,22 @@ declare global {
                             name: 'x_2063979_todo_task'
                             element: 'priority'
                             value: 'high'
+                        }
+                    },
+                    {
+                        table: 'sys_variable_value'
+                        id: '7d254d0461c347c2b5753bac36fd3f26'
+                        key: {
+                            document_key: 'ab243cd7681e4224a91bd96b2a4486e9'
+                            variable: '334b7bb7675003007ba405225685ef72'
+                        }
+                    },
+                    {
+                        table: 'sys_element_mapping'
+                        id: '7d4b5d6aa65e4907b4bb2b4c3f8150bd'
+                        key: {
+                            field: 'record_id'
+                            id: 'c801422827e54f4292f703302227312f'
                         }
                     },
                     {
@@ -1388,6 +1875,22 @@ declare global {
                         key: {
                             name: 'x_2063979_todo_task'
                             element: 'notes'
+                        }
+                    },
+                    {
+                        table: 'sys_variable_value'
+                        id: '8452bcbee0fd499bae7763c01a0fb7fe'
+                        key: {
+                            document_key: '9f26d3ea381b43f5bc5e46c5bec27183'
+                            variable: '501c8f535320220002c6435723dc34da'
+                        }
+                    },
+                    {
+                        table: 'sys_variable_value'
+                        id: '8626f7a29f804809b4a0cb5059ba3d73'
+                        key: {
+                            document_key: 'fc0ea06191ba4f1388c0d745f7cc3c6e'
+                            variable: 'e6e3c7535320220002c6435723dc3496'
                         }
                     },
                     {
@@ -1464,6 +1967,30 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_variable_value'
+                        id: '8d1ac995d78d4c7fab34b5fb68c16cd8'
+                        key: {
+                            document_key: '1b5fbb19acd0489aaa1dac09d26d51ac'
+                            variable: 'ff06ab840f20101091d0f00c97767e6d'
+                        }
+                    },
+                    {
+                        table: 'sys_variable_value'
+                        id: '8e17813345b942d58649784cfcd1f6af'
+                        key: {
+                            document_key: 'c801422827e54f4292f703302227312f'
+                            variable: '67400008676003007ba405225685efa4'
+                        }
+                    },
+                    {
+                        table: 'sys_variable_value'
+                        id: '8f03e08434954e9fa98e7ec48cd29a7f'
+                        key: {
+                            document_key: 'd4213ad0bf6e427690da3e2a1252ebb3'
+                            variable: 'cbddfa135320220002c6435723dc3415'
+                        }
+                    },
+                    {
                         table: 'sys_security_acl_role'
                         id: '8f68730c1d464f8fbb10210e14e32ba5'
                         key: {
@@ -1517,6 +2044,14 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_variable_value'
+                        id: '96a097b1315c4455bc3531891c098a6e'
+                        key: {
+                            document_key: '1b5fbb19acd0489aaa1dac09d26d51ac'
+                            variable: '1778a7480f20101091d0f00c97767e03'
+                        }
+                    },
+                    {
                         table: 'sys_security_acl_role'
                         id: '96af30521a714028be2501b375cc9af7'
                         key: {
@@ -1548,6 +2083,14 @@ declare global {
                                     name: 'x_2063979_todo.admin'
                                 }
                             }
+                        }
+                    },
+                    {
+                        table: 'sys_variable_value'
+                        id: '992a992841b34c43954bd0ef66a76ee8'
+                        key: {
+                            document_key: '1b5fbb19acd0489aaa1dac09d26d51ac'
+                            variable: '98c44875ffa033008d3f5d9ad53bf1fa'
                         }
                     },
                     {
@@ -1589,6 +2132,14 @@ declare global {
                     },
                     {
                         table: 'sys_variable_value'
+                        id: '9be2847c292a45a39171a100c54f475f'
+                        key: {
+                            document_key: 'fc0ea06191ba4f1388c0d745f7cc3c6e'
+                            variable: '9024a37f671003007ba405225685efe5'
+                        }
+                    },
+                    {
+                        table: 'sys_variable_value'
                         id: '9c131079f68041a6b451b796b2807961'
                         key: {
                             document_key: '20cf67798d5547a0a7761a8deeb08c93'
@@ -1603,6 +2154,14 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_variable_value'
+                        id: 'a023f260a05c4f48a6691a2cb366f86e'
+                        key: {
+                            document_key: '9f26d3ea381b43f5bc5e46c5bec27183'
+                            variable: '334b7bb7675003007ba405225685ef72'
+                        }
+                    },
+                    {
                         table: 'sys_documentation'
                         id: 'a0aab209c31245aca025bb2b9df0d4e1'
                         key: {
@@ -1613,10 +2172,51 @@ declare global {
                     },
                     {
                         table: 'sys_variable_value'
+                        id: 'a145f9e9e7a24d0ab7f55ed682260ef4'
+                        key: {
+                            document_key: 'd4213ad0bf6e427690da3e2a1252ebb3'
+                            variable: '67400008676003007ba405225685efa4'
+                        }
+                    },
+                    {
+                        table: 'sys_element_mapping'
+                        id: 'a1715561705a480cbeaa21e7837241f8'
+                        key: {
+                            field: 'record_id'
+                            id: 'ab243cd7681e4224a91bd96b2a4486e9'
+                        }
+                    },
+                    {
+                        table: 'sys_variable_value'
+                        id: 'a2c72b63b8264025b903a0833bc32be0'
+                        key: {
+                            document_key: '94c70f13599c4ccfa0a344d69a36cd16'
+                            variable: '98c44875ffa033008d3f5d9ad53bf1fa'
+                        }
+                    },
+                    {
+                        table: 'sys_variable_value'
                         id: 'a2fa86ae5a2e43aebc117aec6a07bb43'
                         key: {
                             document_key: '83f5cf8941964c2e9c31f74283e37b4b'
                             variable: 'b27b2b29ff6033008d3f5d9ad53bf164'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_list'
+                        id: 'a31969fac351cf90d65e5b2ed401317c'
+                        key: {
+                            name: 'x_2063979_todo_task'
+                            view: {
+                                id: 'Default view'
+                                key: {
+                                    name: 'NULL'
+                                }
+                            }
+                            sys_domain: 'global'
+                            element: 'NULL'
+                            relationship: 'NULL'
+                            parent: 'NULL'
                         }
                     },
                     {
@@ -1688,6 +2288,14 @@ declare global {
                     },
                     {
                         table: 'sys_variable_value'
+                        id: 'a9d13aaaa1ac4b2b97e82dd0ee60824d'
+                        key: {
+                            document_key: '94c70f13599c4ccfa0a344d69a36cd16'
+                            variable: '1778a7480f20101091d0f00c97767e03'
+                        }
+                    },
+                    {
+                        table: 'sys_variable_value'
                         id: 'ab5c6f5210494055be85793cf684a2a5'
                         key: {
                             document_key: '9bd87e2a81f44c198db25255988ba647'
@@ -1708,6 +2316,14 @@ declare global {
                         key: {
                             field: 'record_id'
                             id: '93faa904a4d44ceba3dc65fc4233d8bf'
+                        }
+                    },
+                    {
+                        table: 'sys_element_mapping'
+                        id: 'ae4ec6fc81a74ed588789138c878e885'
+                        key: {
+                            field: 'record_id'
+                            id: 'dbff3fc943354b5b8127599adc4df641'
                         }
                     },
                     {
@@ -1802,6 +2418,14 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_variable_value'
+                        id: 'b277623b69ee4b509fb0c41d52eb688c'
+                        key: {
+                            document_key: '966892af309548d8880c3bf0dee804cd'
+                            variable: 'bc4c43935320220002c6435723dc34a2'
+                        }
+                    },
+                    {
                         table: 'sys_security_acl_role'
                         id: 'b31b46fd96064ac2a990acb496190c28'
                         key: {
@@ -1812,6 +2436,14 @@ declare global {
                                     name: 'x_2063979_todo.user'
                                 }
                             }
+                        }
+                    },
+                    {
+                        table: 'sys_variable_value'
+                        id: 'b714ee123ab94936b7201235b2369711'
+                        key: {
+                            document_key: '94c70f13599c4ccfa0a344d69a36cd16'
+                            variable: '1985e0ceff2433008d3f5d9ad53bf1ba'
                         }
                     },
                     {
@@ -1928,6 +2560,14 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_variable_value'
+                        id: 'c04809165bd141909d1a8e64bf877309'
+                        key: {
+                            document_key: 'c801422827e54f4292f703302227312f'
+                            variable: '52ed1e5b5360220002c6435723dc3421'
+                        }
+                    },
+                    {
                         table: 'sys_element_mapping'
                         id: 'c108fb2fb98e4b28ad5abc0edfaec487'
                         key: {
@@ -1942,6 +2582,14 @@ declare global {
                             name: 'x_2063979_todo_task'
                             element: 'priority'
                             value: 'normal'
+                        }
+                    },
+                    {
+                        table: 'sys_variable_value'
+                        id: 'c2d91f386b964e76b863ad38563d782e'
+                        key: {
+                            document_key: 'ab243cd7681e4224a91bd96b2a4486e9'
+                            variable: '46dbcb535320220002c6435723dc3409'
                         }
                     },
                     {
@@ -1962,11 +2610,44 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_documentation'
+                        id: 'c346bd61e3534d20a7f7f418a224605f'
+                        key: {
+                            name: 'x_2063979_todo_task'
+                            element: 'recurrence_source'
+                            language: 'en'
+                        }
+                    },
+                    {
+                        table: 'sys_variable_value'
+                        id: 'c508369becbc4f67b359738d7c645ebe'
+                        key: {
+                            document_key: 'd4213ad0bf6e427690da3e2a1252ebb3'
+                            variable: '6aad5a575360220002c6435723dc34b0'
+                        }
+                    },
+                    {
                         table: 'sys_variable_value'
                         id: 'c54a6c60fe4a4047bf1c5298e34a418c'
                         key: {
                             document_key: '20cf67798d5547a0a7761a8deeb08c93'
                             variable: '501c8f535320220002c6435723dc34da'
+                        }
+                    },
+                    {
+                        table: 'sys_variable_value'
+                        id: 'c57b39a0ad4642ec96a2852e447795ea'
+                        key: {
+                            document_key: '1b5fbb19acd0489aaa1dac09d26d51ac'
+                            variable: '1985e0ceff2433008d3f5d9ad53bf1ba'
+                        }
+                    },
+                    {
+                        table: 'sys_variable_value'
+                        id: 'c61993c190704d7e9549e608456dabe7'
+                        key: {
+                            document_key: 'dbff3fc943354b5b8127599adc4df641'
+                            variable: 'cbddfa135320220002c6435723dc3415'
                         }
                     },
                     {
@@ -1990,6 +2671,14 @@ declare global {
                         id: 'c74161dfc3a0436e97b49acf47666a3f'
                         key: {
                             name: 'x_2063979_todo/main.js.map'
+                        }
+                    },
+                    {
+                        table: 'sys_variable_value'
+                        id: 'c77e4ce7e61147acb37d9f084e73bf76'
+                        key: {
+                            document_key: '9f26d3ea381b43f5bc5e46c5bec27183'
+                            variable: 'bc4c43935320220002c6435723dc34a2'
                         }
                     },
                     {
@@ -2026,6 +2715,14 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_dictionary'
+                        id: 'cf4cfd43aceb4a98a48dea1ed205076f'
+                        key: {
+                            name: 'x_2063979_todo_task'
+                            element: 'recurrence_source'
+                        }
+                    },
+                    {
                         table: 'sys_variable_value'
                         id: 'cf58723d43244bdba69ba3c6c5ec360e'
                         key: {
@@ -2056,10 +2753,26 @@ declare global {
                     },
                     {
                         table: 'sys_variable_value'
+                        id: 'd028661cd65b42c3924d8da03c0a52bf'
+                        key: {
+                            document_key: 'c801422827e54f4292f703302227312f'
+                            variable: '6aad5a575360220002c6435723dc34b0'
+                        }
+                    },
+                    {
+                        table: 'sys_variable_value'
                         id: 'd259a5edfb0e4baca79601dfdcfd4c29'
                         key: {
                             document_key: '83f5cf8941964c2e9c31f74283e37b4b'
                             variable: '8c07aba5ff6033008d3f5d9ad53bf13b'
+                        }
+                    },
+                    {
+                        table: 'sys_variable_value'
+                        id: 'd294000f39d042178af5bc5c079385c6'
+                        key: {
+                            document_key: '9f26d3ea381b43f5bc5e46c5bec27183'
+                            variable: '46dbcb535320220002c6435723dc3409'
                         }
                     },
                     {
@@ -2094,10 +2807,26 @@ declare global {
                     },
                     {
                         table: 'sys_variable_value'
+                        id: 'd968dba12d6e4467a4c49d59e6018383'
+                        key: {
+                            document_key: 'd4213ad0bf6e427690da3e2a1252ebb3'
+                            variable: 'ff6e125353a0220002c6435723dc3442'
+                        }
+                    },
+                    {
+                        table: 'sys_variable_value'
                         id: 'da5994a391a14bd9b9c33b130956a415'
                         key: {
                             document_key: '9a010bacd0904a8ab1807522518cc96b'
                             variable: 'ff6e125353a0220002c6435723dc3442'
+                        }
+                    },
+                    {
+                        table: 'sys_variable_value'
+                        id: 'dca10639c1c94db6bfc4311b0b3d8675'
+                        key: {
+                            document_key: '94c70f13599c4ccfa0a344d69a36cd16'
+                            variable: '6f69fc4aff6433008d3f5d9ad53bf18c'
                         }
                     },
                     {
@@ -2131,6 +2860,24 @@ declare global {
                         key: {
                             document_key: '26d4d43f44e543a8af1681db3a4e60ed'
                             variable: '334b7bb7675003007ba405225685ef72'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_list_element'
+                        id: 'e31969fac351cf90d65e5b2ed4013183'
+                        key: {
+                            list_id: {
+                                id: 'a31969fac351cf90d65e5b2ed401317c'
+                                key: {
+                                    name: 'x_2063979_todo_task'
+                                    view: 'Default view'
+                                    sys_domain: 'global'
+                                    element: 'NULL'
+                                    relationship: 'NULL'
+                                    parent: 'NULL'
+                                }
+                            }
+                            element: 'priority'
                         }
                     },
                     {
@@ -2168,6 +2915,22 @@ declare global {
                     },
                     {
                         table: 'sys_variable_value'
+                        id: 'e554e57f94754e9aa109246becd85214'
+                        key: {
+                            document_key: 'ab243cd7681e4224a91bd96b2a4486e9'
+                            variable: '53fb0f535320220002c6435723dc34ec'
+                        }
+                    },
+                    {
+                        table: 'sys_variable_value'
+                        id: 'e56644e25ac54799b9c106138d4fcd31'
+                        key: {
+                            document_key: 'dbff3fc943354b5b8127599adc4df641'
+                            variable: 'ff6e125353a0220002c6435723dc3442'
+                        }
+                    },
+                    {
+                        table: 'sys_variable_value'
                         id: 'e615846cf35245e2bf11f453e7bb2c7f'
                         key: {
                             document_key: '40cc950c0be34f0ca6c0c5dbb685e1b0'
@@ -2183,11 +2946,81 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_ui_list_element'
+                        id: 'e71969fac351cf90d65e5b2ed4013182'
+                        key: {
+                            list_id: {
+                                id: 'a31969fac351cf90d65e5b2ed401317c'
+                                key: {
+                                    name: 'x_2063979_todo_task'
+                                    view: 'Default view'
+                                    sys_domain: 'global'
+                                    element: 'NULL'
+                                    relationship: 'NULL'
+                                    parent: 'NULL'
+                                }
+                            }
+                            element: 'notes'
+                        }
+                    },
+                    {
+                        table: 'sys_variable_value'
+                        id: 'e8aa4ee07fed416cb0b5f9555a4a35a8'
+                        key: {
+                            document_key: '94c70f13599c4ccfa0a344d69a36cd16'
+                            variable: 'ff06ab840f20101091d0f00c97767e6d'
+                        }
+                    },
+                    {
                         table: 'sys_variable_value'
                         id: 'eaf3dfc9bd9d46b5a52863ec64eaf03a'
                         key: {
                             document_key: '40cc950c0be34f0ca6c0c5dbb685e1b0'
                             variable: '334b7bb7675003007ba405225685ef72'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_list_element'
+                        id: 'eb1969fac351cf90d65e5b2ed4013181'
+                        key: {
+                            list_id: {
+                                id: 'a31969fac351cf90d65e5b2ed401317c'
+                                key: {
+                                    name: 'x_2063979_todo_task'
+                                    view: 'Default view'
+                                    sys_domain: 'global'
+                                    element: 'NULL'
+                                    relationship: 'NULL'
+                                    parent: 'NULL'
+                                }
+                            }
+                            element: 'completed_at'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_list_element'
+                        id: 'eb1969fac351cf90d65e5b2ed4013184'
+                        key: {
+                            list_id: {
+                                id: 'a31969fac351cf90d65e5b2ed401317c'
+                                key: {
+                                    name: 'x_2063979_todo_task'
+                                    view: 'Default view'
+                                    sys_domain: 'global'
+                                    element: 'NULL'
+                                    relationship: 'NULL'
+                                    parent: 'NULL'
+                                }
+                            }
+                            element: 'status'
+                        }
+                    },
+                    {
+                        table: 'sys_variable_value'
+                        id: 'eb9f232025bf4bf29df39c5743aa160b'
+                        key: {
+                            document_key: '65a5dfa7c580403da29451c503185787'
+                            variable: '3d6d8b935320220002c6435723dc349c'
                         }
                     },
                     {
@@ -2207,6 +3040,14 @@ declare global {
                     },
                     {
                         table: 'sys_variable_value'
+                        id: 'ecdba7bc64774388adcee0a18e4d767c'
+                        key: {
+                            document_key: '5b4696d3b01c4848960abf93c5934d32'
+                            variable: '9024a37f671003007ba405225685efe5'
+                        }
+                    },
+                    {
+                        table: 'sys_variable_value'
                         id: 'edb0b50149f64bd1ad0d9f3eee9b1a20'
                         key: {
                             document_key: '8cc92c1b45804652baf5db1925ab7dab'
@@ -2219,6 +3060,24 @@ declare global {
                         key: {
                             document_key: 'c9a6243af78046de897aa876cef90fc6'
                             variable: '90144b535320220002c6435723dc3488'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_list_element'
+                        id: 'ef1969fac351cf90d65e5b2ed4013183'
+                        key: {
+                            list_id: {
+                                id: 'a31969fac351cf90d65e5b2ed401317c'
+                                key: {
+                                    name: 'x_2063979_todo_task'
+                                    view: 'Default view'
+                                    sys_domain: 'global'
+                                    element: 'NULL'
+                                    relationship: 'NULL'
+                                    parent: 'NULL'
+                                }
+                            }
+                            element: 'recurrence_source'
                         }
                     },
                     {
@@ -2241,6 +3100,14 @@ declare global {
                         id: 'f10e6c353a354b4c98f853a44f337d21'
                         key: {
                             name: 'x_2063979_todo_app.do - BYOUI Files'
+                        }
+                    },
+                    {
+                        table: 'sys_variable_value'
+                        id: 'f13ab537cd2e4e729363f8ade4dd1158'
+                        key: {
+                            document_key: '65a5dfa7c580403da29451c503185787'
+                            variable: 'c7e483f3671003007ba405225685effb'
                         }
                     },
                     {
@@ -2292,11 +3159,27 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_variable_value'
+                        id: 'f78a60c8af29499d952588d94403e0db'
+                        key: {
+                            document_key: 'fc0ea06191ba4f1388c0d745f7cc3c6e'
+                            variable: '90144b535320220002c6435723dc3488'
+                        }
+                    },
+                    {
                         table: 'sys_element_mapping'
                         id: 'f7b0bb75deb447079abb17e81ad4b241'
                         key: {
                             field: 'record_id'
                             id: '9063f99e702745389b6fb45a4753c86f'
+                        }
+                    },
+                    {
+                        table: 'sys_variable_value'
+                        id: 'f8599098ba9d45c7ab1876f6b96636b6'
+                        key: {
+                            document_key: 'dbff3fc943354b5b8127599adc4df641'
+                            variable: '52ed1e5b5360220002c6435723dc3421'
                         }
                     },
                     {
@@ -2342,6 +3225,14 @@ declare global {
                         key: {
                             name: 'x_2063979_todo_saved_filter'
                             element: 'NULL'
+                        }
+                    },
+                    {
+                        table: 'sys_variable_value'
+                        id: 'fe44acfb4cfe4a0a93eeb06ded9dec04'
+                        key: {
+                            document_key: '65a5dfa7c580403da29451c503185787'
+                            variable: '8f7d0f935320220002c6435723dc3471'
                         }
                     },
                     {

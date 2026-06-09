@@ -6,10 +6,11 @@ import { ConfirmModal } from './components/ConfirmModal'
 import { TaskComposer } from './components/TaskComposer'
 import { TaskFilters } from './components/TaskFilters'
 import { TaskList } from './components/TaskList'
+import { SavedFilters } from './components/SavedFilters'
 import { TodoState } from './components/TodoState'
-import { createTask, deleteTask, listTags, listTaskTags, listTasks, updateTask, type TodoTask, type TodoTaskPatch } from './services/todo-api'
+import { assignTag, createSavedFilter, createTag, createTask, deleteSavedFilter, deleteTask, listSavedFilters, listTags, listTaskTags, listTasks, removeTaskTag, renameSavedFilter, updateTask, type TodoTask, type TodoTaskPatch } from './services/todo-api'
 import { display, value } from './utils/fields'
-import { defaultFilterState, filterTasks, isTaskCompleted, taskId, type TaskTagIndex, type TodoFilterState } from './utils/task-filters'
+import { defaultFilterState, filterTasks, isTaskCompleted, parseFilterState, taskId, type TaskTagIndex, type TodoFilterState } from './utils/task-filters'
 
 type PendingAction = { type: 'delete'; task: TodoTask } | { type: 'clear-completed' } | null
 
@@ -17,19 +18,28 @@ export default function App() {
     const queryClient = useQueryClient()
     const [pendingAction, setPendingAction] = useState<PendingAction>(null)
     const [filters, setFilters] = useState<TodoFilterState>(defaultFilterState)
+    const [selectedSavedFilterId, setSelectedSavedFilterId] = useState('')
     const [editingTaskId, setEditingTaskId] = useState<string | null>(null)
     const [drafts, setDrafts] = useState<Record<string, string>>({})
 
     const refreshTasks = useCallback(async () => {
         await queryClient.invalidateQueries({ queryKey: ['todo-tasks'] })
     }, [queryClient])
+    const refreshTags = useCallback(async () => {
+        await Promise.all([
+            queryClient.invalidateQueries({ queryKey: ['todo-tags'] }),
+            queryClient.invalidateQueries({ queryKey: ['todo-task-tags'] }),
+        ])
+    }, [queryClient])
 
     const tasksQuery = useQuery({ queryKey: ['todo-tasks'], queryFn: listTasks })
     const tagsQuery = useQuery({ queryKey: ['todo-tags'], queryFn: listTags })
     const taskTagsQuery = useQuery({ queryKey: ['todo-task-tags'], queryFn: listTaskTags })
+    const savedFiltersQuery = useQuery({ queryKey: ['todo-saved-filters'], queryFn: listSavedFilters })
     const tasks = tasksQuery.data || []
     const tags = tagsQuery.data || []
     const taskTags = taskTagsQuery.data || []
+    const savedFilters = savedFiltersQuery.data || []
     const completedCount = useMemo(() => tasks.filter(isTaskCompleted).length, [tasks])
     const activeCount = tasks.length - completedCount
     const tagOptions = useMemo<SelectItem[]>(() => tags.map((tag) => ({
@@ -55,6 +65,18 @@ export default function App() {
         onSuccess: refreshTasks,
     })
     const deleteMutation = useMutation({ mutationFn: deleteTask, onSuccess: refreshTasks })
+    const createTagMutation = useMutation({ mutationFn: createTag, onSuccess: refreshTags })
+    const assignTagMutation = useMutation({
+        mutationFn: ({ task, tag }: { task: string; tag: string }) => assignTag(task, tag),
+        onSuccess: refreshTags,
+    })
+    const removeTagMutation = useMutation({ mutationFn: removeTaskTag, onSuccess: refreshTags })
+    const refreshSavedFilters = useCallback(async () => {
+        await queryClient.invalidateQueries({ queryKey: ['todo-saved-filters'] })
+    }, [queryClient])
+    const createSavedFilterMutation = useMutation({ mutationFn: ({ name, state }: { name: string; state: TodoFilterState }) => createSavedFilter(name, JSON.stringify(state)), onSuccess: refreshSavedFilters })
+    const renameSavedFilterMutation = useMutation({ mutationFn: ({ id, name }: { id: string; name: string }) => renameSavedFilter(id, name), onSuccess: refreshSavedFilters })
+    const deleteSavedFilterMutation = useMutation({ mutationFn: deleteSavedFilter, onSuccess: refreshSavedFilters })
     const clearCompletedMutation = useMutation({
         mutationFn: async () => {
             await Promise.all(tasks.filter(isTaskCompleted).map((task) => deleteTask(taskId(task))))
@@ -62,9 +84,9 @@ export default function App() {
         onSuccess: refreshTasks,
     })
 
-    const busy = createMutation.isPending || updateMutation.isPending || deleteMutation.isPending || clearCompletedMutation.isPending
-    const isLoading = tasksQuery.isLoading || tagsQuery.isLoading || taskTagsQuery.isLoading
-    const error = tasksQuery.error || tagsQuery.error || taskTagsQuery.error || createMutation.error || updateMutation.error || deleteMutation.error || clearCompletedMutation.error
+    const busy = createMutation.isPending || updateMutation.isPending || deleteMutation.isPending || clearCompletedMutation.isPending || createTagMutation.isPending || assignTagMutation.isPending || removeTagMutation.isPending || createSavedFilterMutation.isPending || renameSavedFilterMutation.isPending || deleteSavedFilterMutation.isPending
+    const isLoading = tasksQuery.isLoading || tagsQuery.isLoading || taskTagsQuery.isLoading || savedFiltersQuery.isLoading
+    const error = tasksQuery.error || tagsQuery.error || taskTagsQuery.error || savedFiltersQuery.error || createMutation.error || updateMutation.error || deleteMutation.error || clearCompletedMutation.error || createTagMutation.error || assignTagMutation.error || removeTagMutation.error || createSavedFilterMutation.error || renameSavedFilterMutation.error || deleteSavedFilterMutation.error
     const errorMessage = error instanceof Error ? error.message : null
 
     const handleStartEdit = useCallback((task: TodoTask) => {
@@ -131,6 +153,23 @@ export default function App() {
                     />
                 </header>
                 <TaskComposer disabled={busy} onCreate={(title) => createMutation.mutateAsync(title)} />
+                <SavedFilters
+                    savedFilters={savedFilters}
+                    selectedId={selectedSavedFilterId}
+                    disabled={isLoading || busy}
+                    onSelect={(id) => {
+                        setSelectedSavedFilterId(id)
+                        const saved = savedFilters.find((filter) => value(filter.sys_id) === id)
+                        setFilters(saved ? parseFilterState(value(saved.filter_state)) : defaultFilterState)
+                    }}
+                    onSave={(name) => createSavedFilterMutation.mutateAsync({ name, state: filters })}
+                    onRename={(id, name) => renameSavedFilterMutation.mutateAsync({ id, name })}
+                    onDelete={async (id) => {
+                        await deleteSavedFilterMutation.mutateAsync(id)
+                        setSelectedSavedFilterId('')
+                        setFilters(defaultFilterState)
+                    }}
+                />
                 <TaskFilters filters={filters} tags={tagOptions} disabled={isLoading} onChange={setFilters} />
                 <TodoState
                     errorMessage={errorMessage}
@@ -153,6 +192,15 @@ export default function App() {
                             changes: { completed, status: completed ? 'completed' : 'active' },
                         })}
                         onUpdate={(task, changes) => updateMutation.mutateAsync({ task, changes })}
+                        tags={tags}
+                        taskTags={taskTags}
+                        onCreateTag={async (name) => {
+                            const normalized = name.trim().toLowerCase()
+                            const existing = tags.find((tag) => value(tag.normalized_name) === normalized)
+                            return existing || createTagMutation.mutateAsync(name)
+                        }}
+                        onAssignTag={(task, tag) => assignTagMutation.mutateAsync({ task: taskId(task), tag })}
+                        onRemoveTag={(mapping) => removeTagMutation.mutateAsync(value(mapping.sys_id))}
                         onDelete={(task) => setPendingAction({ type: 'delete', task })}
                     />
                 )}

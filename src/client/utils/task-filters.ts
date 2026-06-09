@@ -1,6 +1,6 @@
 import type { TodoTask } from '../services/todo-api'
 import { display, value } from './fields'
-import { localDateEndAsServiceNowValue, localDateKey, parseServiceNowDateTime } from './due-dates'
+import { localDateKey, parseServiceNowDateTime } from './due-dates'
 
 export { localDateEndAsServiceNowValue } from './due-dates'
 
@@ -30,6 +30,30 @@ export const defaultFilterState: TodoFilterState = {
     tag: anyTagFilter,
     search: '',
     sort: 'updated',
+}
+
+export function parseFilterState(raw: string): TodoFilterState {
+    try {
+        const state = JSON.parse(raw) as Partial<TodoFilterState>
+        return {
+            status: ['all', 'active', 'completed'].includes(state.status || '')
+                ? (state.status as StatusFilter)
+                : defaultFilterState.status,
+            due: ['any', 'today', 'upcoming', 'overdue'].includes(state.due || '')
+                ? (state.due as DueFilter)
+                : defaultFilterState.due,
+            priority: ['any', 'low', 'normal', 'high', 'urgent'].includes(state.priority || '')
+                ? (state.priority as PriorityFilter)
+                : defaultFilterState.priority,
+            tag: typeof state.tag === 'string' ? state.tag : anyTagFilter,
+            search: typeof state.search === 'string' ? state.search : '',
+            sort: ['updated', 'due', 'priority'].includes(state.sort || '')
+                ? (state.sort as SortMode)
+                : defaultFilterState.sort,
+        }
+    } catch {
+        return defaultFilterState
+    }
 }
 
 export function isTaskCompleted(task: TodoTask): boolean {
@@ -105,27 +129,31 @@ const priorityRank: Record<TaskPriority, number> = {
 function sortTasks(tasks: TodoTask[], sort: SortMode): TodoTask[] {
     if (sort === 'updated') return tasks
 
-    return tasks.map((task, index) => ({ task, index })).sort((left, right) => {
-        if (sort === 'priority') {
-            const leftRank = priorityRank[value(left.task.priority) as TaskPriority] ?? priorityRank.normal
-            const rightRank = priorityRank[value(right.task.priority) as TaskPriority] ?? priorityRank.normal
-            return leftRank - rightRank || left.index - right.index
-        }
+    return tasks
+        .map((task, index) => ({ task, index }))
+        .sort((left, right) => {
+            if (sort === 'priority') {
+                const leftRank = priorityRank[value(left.task.priority) as TaskPriority] ?? priorityRank.normal
+                const rightRank = priorityRank[value(right.task.priority) as TaskPriority] ?? priorityRank.normal
+                return leftRank - rightRank || left.index - right.index
+            }
 
-        const leftDue = dueDateKey(left.task) || '9999-12-31'
-        const rightDue = dueDateKey(right.task) || '9999-12-31'
-        return leftDue.localeCompare(rightDue) || left.index - right.index
-    }).map(({ task }) => task)
+            const leftDue = dueDateKey(left.task) || '9999-12-31'
+            const rightDue = dueDateKey(right.task) || '9999-12-31'
+            return leftDue.localeCompare(rightDue) || left.index - right.index
+        })
+        .map(({ task }) => task)
 }
 
 export function filterTasks(tasks: TodoTask[], filters: TodoFilterState, taskTagIndex: TaskTagIndex): TodoTask[] {
     const todayKey = localDateKey(new Date())
-    const filtered = tasks.filter((task) =>
-        matchesStatus(task, filters.status) &&
-        matchesDue(task, filters.due, todayKey) &&
-        matchesPriority(task, filters.priority) &&
-        matchesTag(task, filters.tag, taskTagIndex) &&
-        matchesSearch(task, filters.search)
+    const filtered = tasks.filter(
+        (task) =>
+            matchesStatus(task, filters.status) &&
+            matchesDue(task, filters.due, todayKey) &&
+            matchesPriority(task, filters.priority) &&
+            matchesTag(task, filters.tag, taskTagIndex) &&
+            matchesSearch(task, filters.search)
     )
     return sortTasks(filtered, filters.sort)
 }

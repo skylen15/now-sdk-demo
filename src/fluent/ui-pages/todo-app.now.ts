@@ -18,6 +18,7 @@ const todoMenu = ApplicationMenu({
     description: 'Personal task management',
     roles: [todoUserRole],
     active: true,
+    category: '',
 })
 
 Record({
@@ -32,5 +33,10 @@ Record({
         roles: ['x_2063979_todo.user'],
         active: true,
         order: 100,
+        override_menu_roles: false,
+        require_confirmation: false,
+        sys_domain: 'global',
+        sys_domain_path: '/',
+        uncancelable: false,
     },
 })

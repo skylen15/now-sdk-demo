@@ -1,125 +1,136 @@
-import { BusinessRule } from '@servicenow/sdk/core'
+import { BusinessRule } from "@servicenow/sdk/core";
 
 BusinessRule({
-    $id: Now.ID['todo_task_normalize_before_save'],
-    name: 'Todo Task Normalize Before Save',
-    table: 'x_2063979_todo_task',
-    when: 'before',
-    action: ['insert', 'update'],
-    order: 100,
-    active: true,
-    description: 'Enforce personal todo defaults and completion state consistency.',
-    script: `
+  $id: Now.ID["todo_task_normalize_before_save"],
+  name: "Todo Task Normalize Before Save",
+  table: "x_2063979_todo_task",
+  when: "before",
+  action: ["update", "insert"],
+  order: 100,
+  active: true,
+  description:
+    "Enforce personal todo defaults and completion state consistency.",
+  script: `
 (function executeRule(current, previous) {
-    var title = (current.getValue('title') || '').trim();
-    if (!title) {
-        gs.addErrorMessage('Todo title is required.');
-        current.setAbortAction(true);
-        return;
-    }
-
-    current.setValue('title', title);
-
-    if (current.operation() === 'insert') {
-        current.setValue('owner', gs.getUserID());
-        current.setValue('status', current.getValue('status') || 'active');
-        current.setValue('priority', current.getValue('priority') || 'normal');
-        if (!current.getValue('completed')) {
-            current.setValue('completed', false);
-        }
-    } else if (previous && previous.isValidRecord() && current.owner.changes()) {
-        current.setValue('owner', previous.getValue('owner'));
-    }
-
     var completed = current.getValue('completed') === 'true' || current.getValue('completed') === '1';
     if (completed) {
-        current.setValue('status', 'completed');
-        if (!current.getValue('completed_at')) {
-            current.setValue('completed_at', new GlideDateTime());
-        }
-    } else {
-        current.setValue('status', 'active');
-        current.setValue('completed_at', '');
+        current.setValue('completed_at', new GlideDateTime());
     }
 })(current, previous);
 `,
-})
+});
 
 BusinessRule({
-    $id: Now.ID['todo_tag_normalize_before_save'],
-    name: 'Todo Tag Normalize Before Save',
-    table: 'x_2063979_todo_tag',
-    when: 'before',
-    action: ['insert', 'update'],
-    order: 100,
-    active: true,
-    description: 'Enforce owner and normalized tag name for personal todo tags.',
-    script: `
+  $id: Now.ID["todo_task_create_next_recurrence"],
+  name: "Todo Task Create Next Recurrence",
+  table: "x_2063979_todo_task",
+  when: "after",
+  action: ["update"],
+  order: 200,
+  active: true,
+  description:
+    "Create the next owner-scoped occurrence when a recurring task is completed.",
+  script: `
 (function executeRule(current, previous) {
-    var name = (current.getValue('name') || '').trim();
-    if (!name) {
-        gs.addErrorMessage('Tag name is required.');
-        current.setAbortAction(true);
+    if (!current.completed.changesTo(true) || !current.getValue('recurrence')) return;
+
+    var rule;
+    try {
+        rule = JSON.parse(current.getValue('recurrence'));
+    } catch (error) {
+        gs.error('Invalid todo recurrence JSON for ' + current.getUniqueValue());
         return;
     }
+    if (!rule || ['daily', 'weekly', 'monthly', 'weekdays'].indexOf(rule.kind) < 0) return;
 
-    current.setValue('name', name);
+    var source = current.getValue('recurrence_source') || current.getUniqueValue();
+    var existing = new GlideRecord('x_2063979_todo_task');
+    existing.addQuery('recurrence_source', source);
+    existing.addQuery('completed', false);
+    existing.setLimit(1);
+    existing.query();
+    if (existing.next()) return;
+
+    var nextDue = new GlideDateTime(current.getValue('due_at') || current.getValue('completed_at'));
+    if (rule.kind === 'daily') nextDue.addDaysLocalTime(1);
+    if (rule.kind === 'weekly') nextDue.addDaysLocalTime(7);
+    if (rule.kind === 'monthly') nextDue.addMonthsLocalTime(1);
+    if (rule.kind === 'weekdays') {
+        do { nextDue.addDaysLocalTime(1); } while (nextDue.getDayOfWeekLocalTime() === 1 || nextDue.getDayOfWeekLocalTime() === 7);
+    }
+
+    var next = new GlideRecord('x_2063979_todo_task');
+    next.initialize();
+    next.setValue('owner', current.getValue('owner'));
+    next.setValue('title', current.getValue('title'));
+    next.setValue('priority', current.getValue('priority'));
+    next.setValue('notes', current.getValue('notes'));
+    next.setValue('due_at', nextDue);
+    next.setValue('recurrence', current.getValue('recurrence'));
+    next.setValue('recurrence_source', source);
+    next.insert();
+})(current, previous);
+`,
+});
+
+BusinessRule({
+  $id: Now.ID["todo_tag_normalize_before_save"],
+  name: "Todo Tag Normalize Before Save",
+  table: "x_2063979_todo_tag",
+  when: "before",
+  action: ["update", "insert"],
+  order: 100,
+  active: true,
+  description: "Enforce owner and normalized tag name for personal todo tags.",
+  script: `
+(function executeRule(current, previous) {
     current.setValue('normalized_name', name.toLowerCase());
 
-    if (current.operation() === 'insert') {
-        current.setValue('owner', gs.getUserID());
-    } else if (previous && previous.isValidRecord() && current.owner.changes()) {
-        current.setValue('owner', previous.getValue('owner'));
+    var duplicate = new GlideRecord('x_2063979_todo_tag');
+    duplicate.addQuery('owner', current.getValue('owner'));
+    duplicate.addQuery('normalized_name', current.getValue('normalized_name'));
+    duplicate.addQuery('sys_id', '!=', current.getUniqueValue());
+    duplicate.setLimit(1);
+    duplicate.query();
+    if (duplicate.next()) {
+        gs.addErrorMessage('Tag already exists.');
+        current.setAbortAction(true);
     }
 })(current, previous);
 `,
-})
+});
 
 BusinessRule({
-    $id: Now.ID['todo_task_tag_normalize_before_save'],
-    name: 'Todo Task Tag Normalize Before Save',
-    table: 'x_2063979_todo_task_tag',
-    when: 'before',
-    action: ['insert', 'update'],
-    order: 100,
-    active: true,
-    description: 'Enforce owner consistency for personal todo task-tag mappings.',
-    script: `
+  $id: Now.ID["todo_task_tag_normalize_before_save"],
+  name: "Todo Task Tag Normalize Before Save",
+  table: "x_2063979_todo_task_tag",
+  when: "before",
+  action: ["update", "insert"],
+  order: 100,
+  active: true,
+  description: "Enforce owner consistency for personal todo task-tag mappings.",
+  script: `
 (function executeRule(current, previous) {
-    if (current.operation() === 'insert') {
-        current.setValue('owner', gs.getUserID());
-    } else if (previous && previous.isValidRecord() && current.owner.changes()) {
-        current.setValue('owner', previous.getValue('owner'));
-    }
-})(current, previous);
-`,
-})
-
-BusinessRule({
-    $id: Now.ID['todo_saved_filter_normalize_before_save'],
-    name: 'Todo Saved Filter Normalize Before Save',
-    table: 'x_2063979_todo_saved_filter',
-    when: 'before',
-    action: ['insert', 'update'],
-    order: 100,
-    active: true,
-    description: 'Enforce owner and name defaults for personal todo saved filters.',
-    script: `
-(function executeRule(current, previous) {
-    var name = (current.getValue('name') || '').trim();
-    if (!name) {
-        gs.addErrorMessage('Saved filter name is required.');
+    var task = current.task.getRefRecord();
+    var tag = current.tag.getRefRecord();
+    if (!task.isValidRecord() || !tag.isValidRecord() ||
+        task.getValue('owner') != current.getValue('owner') ||
+        tag.getValue('owner') != current.getValue('owner')) {
+        gs.addErrorMessage('Task and tag must belong to the current user.');
         current.setAbortAction(true);
         return;
     }
 
-    current.setValue('name', name);
-
-    if (current.operation() === 'insert') {
-        current.setValue('owner', gs.getUserID());
-    } else if (previous && previous.isValidRecord() && current.owner.changes()) {
-        current.setValue('owner', previous.getValue('owner'));
+    var duplicate = new GlideRecord('x_2063979_todo_task_tag');
+    duplicate.addQuery('task', current.getValue('task'));
+    duplicate.addQuery('tag', current.getValue('tag'));
+    duplicate.addQuery('sys_id', '!=', current.getUniqueValue());
+    duplicate.setLimit(1);
+    duplicate.query();
+    if (duplicate.next()) {
+        gs.addErrorMessage('Tag is already assigned to this task.');
+        current.setAbortAction(true);
     }
 })(current, previous);
 `,
-})
+});

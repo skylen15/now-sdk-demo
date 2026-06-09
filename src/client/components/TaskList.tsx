@@ -1,4 +1,4 @@
-import type { TodoTask, TodoTaskPatch } from '../services/todo-api'
+import type { TodoTag, TodoTask, TodoTaskPatch, TodoTaskTag } from '../services/todo-api'
 import { TaskRow } from './TaskRow'
 
 interface TaskListProps {
@@ -12,6 +12,11 @@ interface TaskListProps {
     onSaveEdit: (task: TodoTask) => Promise<unknown>
     onToggle: (task: TodoTask, completed: boolean) => Promise<unknown>
     onUpdate: (task: TodoTask, changes: TodoTaskPatch) => Promise<unknown>
+    tags: TodoTag[]
+    taskTags: TodoTaskTag[]
+    onCreateTag: (name: string) => Promise<TodoTag>
+    onAssignTag: (task: TodoTask, tag: string) => Promise<unknown>
+    onRemoveTag: (mapping: TodoTaskTag) => Promise<unknown>
     onDelete: (task: TodoTask) => void
 }
 
@@ -26,6 +31,11 @@ export function TaskList({
     onSaveEdit,
     onToggle,
     onUpdate,
+    tags,
+    taskTags,
+    onCreateTag,
+    onAssignTag,
+    onRemoveTag,
     onDelete,
 }: TaskListProps) {
     return (
@@ -43,6 +53,11 @@ export function TaskList({
                     onSaveEdit={onSaveEdit}
                     onToggle={onToggle}
                     onUpdate={onUpdate}
+                    tags={tags}
+                    taskTags={taskTags}
+                    onCreateTag={onCreateTag}
+                    onAssignTag={onAssignTag}
+                    onRemoveTag={onRemoveTag}
                     onDelete={onDelete}
                 />
             ))}
