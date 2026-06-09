@@ -6,6 +6,8 @@
 - Server-side script behavior must be tested locally with `@kobidev/now-sdk-mock` first when feasible.
 - Use ATF as the later fallback for server-side behavior that cannot be mocked locally or requires instance/platform enforcement.
 - Data model behavior should be validated through local server-side checks, ATF, or Table API tests as appropriate to the risk.
-- UI Page stories require Playwright checks when feasible and installed UI page smoke tests when instance validation is in scope.
+- UI Page stories require Playwright installed-page smoke tests when instance
+  validation is approved. Load credentials from the ignored root `.env`, create
+  uniquely named records, clean them up, and record evidence or blockers.
 - Use cloned package sources under `repos/now-sdk-mock` and `repos/playwright` for examples and API details before relying on memory.
 - Record known test gaps in `state.md` or the active story notes.

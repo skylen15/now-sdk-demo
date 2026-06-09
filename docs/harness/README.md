@@ -17,6 +17,8 @@ ServiceNow Agile is the backlog source of truth. The local `backlog.json` file i
 9. Record durable architecture decisions in `decisions.md`.
 10. Track evidence-based quality trends in `quality-score.md`.
 11. Track actionable cross-story engineering debt in `tech-debt.md`.
+12. Follow `release-workflow.md` for biweekly release branches, environment
+    promotion, ServiceNow Change Requests, rollback, and post-deploy validation.
 
 ## Apply To Another Project
 
@@ -63,6 +65,9 @@ Specialized review guidance lives in portable base-spec skill packages under `do
 - Current durable state: `docs/harness/state.md`
 - Session continuity: `docs/harness/session-handoff.md`
 - Completion evidence contract: `docs/harness/verification.md`
+- Release and deployment protocol: `docs/harness/release-workflow.md`
+- Release evidence: `docs/releases/vX.Y.Z.md` created from
+  `docs/harness/release-record-template.md`
 - Architecture and system boundaries: `ARCHITECTURE.md`
 - Quality trends and known gaps: `docs/harness/quality-score.md`
 - Cross-story technical debt: `docs/harness/tech-debt.md`

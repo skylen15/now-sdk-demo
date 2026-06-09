@@ -32,6 +32,7 @@ Refer to the following specialized documentation and review skill packages for w
 - **Context7 Documentation**: [context7/SKILL.md](docs/harness/skills/context7/SKILL.md) (Use when resolving external library queries)
 - **ServiceNow/SDK Documentation**: [sn-docs/SKILL.md](docs/harness/skills/sn-docs/SKILL.md) (Use when checking ServiceNow API or platform behavior)
 - **Story Implementation Protocol**: [story-workflow.md](docs/harness/story-workflow.md) (Follow this workflow when executing any task or story)
+- **Release and Deployment Protocol**: [release-workflow.md](docs/harness/release-workflow.md) (Follow for release branches, promotion, Change Requests, deploys, rollback, and post-deploy validation)
 - **Session Bootstrap**: Run `npm run harness:init` before story work.
 - **Session Handoff**: Read and update `docs/harness/session-handoff.md` so unfinished work can resume safely.
 - **Verification Contract**: Follow `docs/harness/verification.md`; do not declare completion without recorded evidence.
@@ -43,6 +44,9 @@ Refer to the following specialized documentation and review skill packages for w
 - Do not deploy, install, transform, download dependencies, or authenticate against a ServiceNow instance unless the user explicitly asks for it or has already provided the needed context.
 - Do not edit `node_modules/`, `dist/`, `.now/`, or generated SDK output by hand.
 - Do not add secrets, access keys, passwords, OAuth secrets, or instance credentials to this repository.
+- Store Playwright instance credentials only in the ignored root `.env` file
+  using `SERVICENOW_BASE_URL`, `SERVICENOW_USERNAME`, and
+  `SERVICENOW_PASSWORD`. Keep `.env.example` secret-free.
 - Do not revert unrelated user changes.
 - For local searches, use `rg` when available. If `rg` is not installed, use cross-platform fallbacks in this order: `git grep` inside a git repo, then `grep -R` on macOS/Linux shells, then PowerShell `Select-String` on Windows. Do not require installing `rg`.
 
@@ -110,10 +114,12 @@ Use the real company code from the target instance when available.
 ## Validation
 
 - Run `npm run build` or `npx @servicenow/sdk build` after metadata or Fluent changes when feasible.
-- For server-side script behavior, test locally with `@kobidev/now-sdk-mock` first; use the cloned source under `repos/now-sdk-mock` for examples and API details.
-- Use ATF later only when server-side behavior cannot be validated locally or needs instance/platform enforcement.
-- Use Playwright for UI Page validation; use the cloned source under `repos/playwright` for examples and API details.
+- Follow [test-review/SKILL.md](docs/harness/skills/test-review/SKILL.md) for test planning and tool-specific validation guidance.
 - For TanStack Router and TanStack Query changes, use the cloned sources under `repos/tanstack-router` and `repos/tanstack-query` for current patterns and API details.
 - For XML-only edits, validate changed XML files are well-formed.
 - Do not run deploy/install commands unless explicitly requested.
 - If instance-side validation is required, authenticate explicitly and verify the selected SDK alias before running instance operations.
+- Run Playwright installed-page smoke tests for UI changes when instance
+  validation is approved. Tests must use ignored `.env` credentials, create
+  uniquely named records, clean up test data, and record results or blockers in
+  `docs/harness/session-handoff.md`.

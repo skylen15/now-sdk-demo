@@ -110,3 +110,61 @@ The existing US002 data model uses `DateTimeColumn`, while US005 and US006 prese
 
 Consequences:
 Client display, filtering, sorting, and overdue styling must continue converting the actual UTC value back to a browser-local date. Instance validation with a known user timezone remains required around daylight-saving and midnight boundaries.
+
+## DEC-009: Biweekly Trunk-Based Release Train
+
+Status: Accepted
+
+Decision:
+Use protected `main` for integrated work, short-lived story/bug branches, and a
+temporary `release/<semantic-version>` branch for each biweekly release. Keep
+`main` open while the release candidate moves through TEST, UAT, and PROD.
+Promote the same immutable artifact when supported, otherwise use and record a
+reproducible build from the exact release commit. Require an approved ServiceNow
+Change Request for UAT and PROD.
+
+Reason:
+Git branches identify code versions; instances are deployment destinations.
+Permanent environment branches create drift and merge risk. A temporary release
+branch freezes the production candidate without stopping new work on `main`.
+
+Consequences:
+Release fixes must merge back into `main`. Production commits receive semantic
+version tags. A story is Done only after production deployment and post-deploy
+validation. Release owners must retain release evidence, checksums or build
+details, approvals, rollback plans, and Change Request closure evidence.
+
+## DEC-010: Store Task Notes on Todo Task
+
+Status: Accepted
+
+Decision:
+Store optional US007 notes directly in `x_2063979_todo_task.notes`.
+
+Reason:
+Notes are single-user task context, not comments or activity records. Existing
+task column supports atomic edits and search without another related table.
+
+Consequences:
+Notes follow task owner ACLs and task lifecycle. Comments, history, and shared
+notes remain out of scope.
+
+## DEC-011: Use In-App Task Reminder State
+
+Status: Accepted
+
+Decision:
+Use the existing owner-scoped `x_2063979_todo_task.reminder_at` field and show
+upcoming or due reminder state in the task row. Do not add an email notification,
+custom event, scheduled job, or custom notification engine for US010.
+
+Reason:
+Now SDK supports email notification and event artifacts, but those mechanisms
+add trigger, recipient, and delivery configuration beyond the story's
+lightweight personal reminder scope. The in-app indicator delivers reminder
+state whenever the user opens the Todo UI and preserves owner isolation through
+existing task ACLs.
+
+Consequences:
+Reminders do not proactively notify users outside the Todo UI. Installed-page
+validation must confirm local-time display and due-state behavior.
