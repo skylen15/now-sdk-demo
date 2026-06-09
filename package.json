@@ -13,8 +13,6 @@
         "harness:validate": "node scripts/harness-validate.mjs",
         "harness:init:build": "node scripts/harness-init.mjs --build",
         "harness:apply": "node scripts/apply-harness.mjs",
-        "harness:package:test": "npm --prefix packages/apply-spec-harness test",
-        "harness:package:check": "npm --prefix packages/apply-spec-harness run pack:check",
         "test:due-dates": "node --experimental-strip-types --test scripts/due-dates.test.mjs",
         "build": "npm run generate-routes && now-sdk build",
         "deploy": "now-sdk install",
