@@ -7,3 +7,7 @@ target/
 .jest_cache
 repos/
 logs/
+test-results/
+.env
+.env.*
+!.env.example
